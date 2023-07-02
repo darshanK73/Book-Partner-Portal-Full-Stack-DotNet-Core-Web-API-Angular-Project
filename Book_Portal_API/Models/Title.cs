@@ -29,6 +29,5 @@ public partial class Title
     public virtual Publisher? Pub { get; set; }
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 
-    [JsonIgnore]
     public virtual ICollection<Titleauthor> Titleauthors { get; set; } = new List<Titleauthor>();
 }

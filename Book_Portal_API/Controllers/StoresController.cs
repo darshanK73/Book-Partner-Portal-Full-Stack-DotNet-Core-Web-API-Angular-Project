@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Book_Portal_API.Models;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Book_Portal_API.Controllers
 {
@@ -46,6 +47,7 @@ namespace Book_Portal_API.Controllers
             return Ok("Record Created Successfully");
         }
 
+        [Authorize]
         // GET: api/stores
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Store>>> GetStores()

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Book_Portal_API.Models;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
+using Book_Portal_API.Helpers;
 
 namespace Book_Portal_API.Controllers
 {

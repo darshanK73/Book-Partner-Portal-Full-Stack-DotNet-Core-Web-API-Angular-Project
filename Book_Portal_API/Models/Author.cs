@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Book_Portal_API.Models;
 
-public partial class Author
+public partial class Author : ApplicationUser
 {
     public string AuId { get; set; } = null!;
 
@@ -23,7 +23,5 @@ public partial class Author
     public string? Zip { get; set; }
 
     public bool Contract { get; set; }
-
-    [JsonIgnore]
     public virtual ICollection<Titleauthor> Titleauthors { get; set; } = new List<Titleauthor>();
 }

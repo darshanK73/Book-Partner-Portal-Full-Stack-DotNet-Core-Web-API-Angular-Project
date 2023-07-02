@@ -23,7 +23,7 @@ GO
 if exists (select * from sysdatabases where name='pubs')
 begin
   raiserror('Dropping existing pubs database ....',0,1)
-  DROP database pubs
+  DROP database newpubs
 end
 GO
 
@@ -36,14 +36,14 @@ go
    Use default size with autogrow
 */
 
-CREATE DATABASE pubs
+CREATE DATABASE newpubs
 GO
 
 CHECKPOINT
 
 GO
 
-USE pubs
+USE newpubs
 
 GO
 
@@ -1814,6 +1814,8 @@ raiserror('Now at the inserts to stores ....',0,1)
 
 GO
 
+SELECT * FROM STORES;
+
 insert stores values('7066','Barnum''s','567 Pasadena Ave.','Tustin','CA','92789')
 insert stores values('7067','News & Brews','577 First St.','Los Gatos','CA','96745')
 insert stores values('7131','Doc-U-Mat: Quality Laundry and Books',
@@ -1829,27 +1831,30 @@ raiserror('Now at the inserts to sales ....',0,1)
 
 GO
 
-insert sales values('7066', 'QA7442.3', '09/13/94', 75, 'ON invoice','PS2091')
-insert sales values('7067', 'D4482', '09/14/94', 10, 'Net 60','PS2091')
-insert sales values('7131', 'N914008', '09/14/94', 20, 'Net 30','PS2091')
-insert sales values('7131', 'N914014', '09/14/94', 25, 'Net 30','MC3021')
-insert sales values('8042', '423LL922', '09/14/94', 15, 'ON invoice','MC3021')
-insert sales values('8042', '423LL930', '09/14/94', 10, 'ON invoice','BU1032')
-insert sales values('6380', '722a', '09/13/94', 3, 'Net 60','PS2091')
-insert sales values('6380', '6871', '09/14/94', 5, 'Net 60','BU1032')
-insert sales values('8042','P723', '03/11/93', 25, 'Net 30', 'BU1111')
-insert sales values('7896','X999', '02/21/93', 35, 'ON invoice', 'BU2075')
-insert sales values('7896','QQ2299', '10/28/93', 15, 'Net 60', 'BU7832')
-insert sales values('7896','TQ456', '12/12/93', 10, 'Net 60', 'MC2222')
-insert sales values('8042','QA879.1', '5/22/93', 30, 'Net 30', 'PC1035')
-insert sales values('7066','A2976', '5/24/93', 50, 'Net 30', 'PC8888')
-insert sales values('7131','P3087a', '5/29/93', 20, 'Net 60', 'PS1372')
-insert sales values('7131','P3087a', '5/29/93', 25, 'Net 60', 'PS2106')
-insert sales values('7131','P3087a', '5/29/93', 15, 'Net 60', 'PS3333')
-insert sales values('7131','P3087a', '5/29/93', 25, 'Net 60', 'PS7777')
-insert sales values('7067','P2121', '6/15/92', 40, 'Net 30', 'TC3218')
-insert sales values('7067','P2121', '6/15/92', 20, 'Net 30', 'TC4203')
-insert sales values('7067','P2121', '6/15/92', 20, 'Net 30', 'TC7777')
+SELECT * FROM SALES;
+
+
+insert sales values('7066', 'QA7442.3', 'PS2091','09/13/94', 75, 'ON invoice')
+insert sales values('7067', 'D4482','PS2091', '09/14/94', 10, 'Net 60')
+insert sales values('7131', 'N914008','PS2091', '09/14/94', 20, 'Net 30')
+insert sales values('7131', 'N914014','MC3021', '09/14/94', 25, 'Net 30')
+insert sales values('8042', '423LL922','MC3021', '09/14/94', 15, 'ON invoice')
+insert sales values('8042', '423LL930','BU1032', '09/14/94', 10, 'ON invoice')
+insert sales values('6380', '722a','PS2091', '09/13/94', 3, 'Net 60')
+insert sales values('6380', '6871','BU1032', '09/14/94', 5, 'Net 60')
+insert sales values('8042','P723', 'BU1111', '03/11/93', 25, 'Net 30')
+insert sales values('7896','X999', 'BU2075', '02/21/93', 35, 'ON invoice')
+insert sales values('7896','QQ2299', 'BU7832', '10/28/93', 15, 'Net 60')
+insert sales values('7896','TQ456', 'MC2222', '12/12/93', 10, 'Net 60')
+insert sales values('8042','QA879.1', 'PC1035', '5/22/93', 30, 'Net 30')
+insert sales values('7066','A2976', 'PC8888', '5/24/93', 50, 'Net 30')
+insert sales values('7131','P3087a', 'PS1372', '5/29/93', 20, 'Net 60')
+insert sales values('7131','P3087a', 'PS2106', '5/29/93', 25, 'Net 60')
+insert sales values('7131','P3087a', 'PS3333', '5/29/93', 15, 'Net 60')
+insert sales values('7131','P3087a', 'PS7777', '5/29/93', 25, 'Net 60')
+insert sales values('7067','P2121', 'TC3218', '6/15/92', 40, 'Net 30')
+insert sales values('7067','P2121', 'TC4203', '6/15/92', 20, 'Net 30')
+insert sales values('7067','P2121', 'TC7777', '6/15/92', 20, 'Net 30')
 
 GO
 

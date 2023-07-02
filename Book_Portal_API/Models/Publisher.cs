@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Book_Portal_API.Models;
 
-public partial class Publisher
+public partial class Publisher : ApplicationUser
 {
     public string PubId { get; set; } = null!;
 
