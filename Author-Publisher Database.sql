@@ -23,7 +23,7 @@ GO
 if exists (select * from sysdatabases where name='pubs')
 begin
   raiserror('Dropping existing pubs database ....',0,1)
-  DROP database newpubs
+  DROP database pubs
 end
 GO
 
@@ -36,14 +36,14 @@ go
    Use default size with autogrow
 */
 
-CREATE DATABASE newpubs
+CREATE DATABASE pubs
 GO
 
 CHECKPOINT
 
 GO
 
-USE newpubs
+USE pubs
 
 GO
 
