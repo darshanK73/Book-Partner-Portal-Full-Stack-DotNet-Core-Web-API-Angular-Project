@@ -1,1 +1,49 @@
-<p>login works!</p>
+<div class="wrapper">
+    <div class="container">
+        <div class="cover">
+            <div class="front">
+                <img src="../../../assets/img/FrontImage.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Login</div>
+                    <form action="#">
+                        <div class="input-boxes">
+                            <div class="mb-2 input-box">
+                                <label for="role">Role</label>
+                                <!-- <input type="text" name="role" id="role"> -->
+
+                                <select id="role" class="form-select">
+                                    <option value="author">Author</option>
+                                    <option value="publisher">Publisher</option>
+                                </select>
+
+                            </div>
+                            <div class="mb-2 input-box">
+                                <label for="username">User Name</label>
+                                <input type="text" name="username" id="username">
+                            </div>
+                            <div class="mb-2 input-box">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" required >
+                                <i class="fas fa-eye toggle-password"></i>
+                            </div>
+
+                            <div class="text text-center"><a href="#">Forgot password?</a></div>
+                            <div class="button input-box">
+                                <button>Login</button>
+                            </div>
+                            <div class="text sign-up-text">Don't have an account? Sign Up For
+                                <a href="author-register">Author</a> OR
+                                <a href="publisher-register">Publisher</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

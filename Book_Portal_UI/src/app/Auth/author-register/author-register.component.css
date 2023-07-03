@@ -1,0 +1,148 @@
+.container-fluid{
+    height: 100vh;
+}
+
+.row{
+    height: 100%;
+}
+
+.form-control:focus{
+    outline: 1.3px solid black !important;
+    border: none !important;
+    box-shadow: none;
+}
+
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #3351e1 50%, #c0d0f5 50%);
+  }
+  
+
+.title {
+    position: relative;
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.title:before {
+    content: '';
+    position: absolute;
+    left: 12;
+    bottom: 0;
+    height: 3px;
+    width: 18px;
+    background: rgb(51, 81, 225);
+}
+
+form{
+    background: #ffff;
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 3px 3px 30px 2px rgba(20, 20, 20, 0.4);
+}
+
+
+  
+label {
+    color: grey !important;
+    font-size: 12px;
+    text-align: left !important;
+}
+
+input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* height: 40px;
+    width: 280px; */
+    width: 100%;
+    margin: 1px;
+    position: relative;
+    background: rgba(237, 240, 245, 255);
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: gray;
+    border: none;
+    outline: none;
+}
+
+#r2,#r1{
+    width: 20px;
+    height: 20px;
+}
+
+.form-check-label{
+    margin-bottom: -20px !important;
+}
+
+.form-check-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+}
+
+button{
+    color: #fff;
+    background-color: rgba(55, 80, 235, 255);
+    /* Change background color */
+    border-radius: 10px;
+    /* Use same border-radius as input boxes */
+    padding: 0 30px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 10px 200px;
+    margin-top: 10px;
+    /* Match width of input boxes */
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+#btnwrap{
+    display: flex;
+    justify-content: center;
+}
+
+.form-content .input-box input {
+    height: 100%;
+    width: 100%;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 250;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: gray;
+    align-items: center;
+    background: none;
+    text-align: left;
+    /* Added text alignment */
+}
+
+input:focus {
+    /* Styles for input box when focused */
+    outline: none;
+    border-color: rgba(55, 80, 235, 255);
+    box-shadow: 0 0 0 2px rgba(55, 80, 235, 0.2);
+}
+
+.form-content .input-box input:valid {
+    /* Styles for input box when value is valid */
+    border-color: green;
+}

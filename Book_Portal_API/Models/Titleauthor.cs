@@ -13,10 +13,6 @@ public partial class Titleauthor
     public byte? AuOrd { get; set; }
 
     public int? Royaltyper { get; set; }
-
-    [JsonIgnore]
     public virtual Author Au { get; set; } = null!;
-
-    [JsonIgnore]
     public virtual Title Title { get; set; } = null!;
 }

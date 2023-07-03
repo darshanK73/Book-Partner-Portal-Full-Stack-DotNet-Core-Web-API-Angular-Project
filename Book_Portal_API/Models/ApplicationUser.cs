@@ -1,4 +1,6 @@
-﻿namespace Book_Portal_API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Book_Portal_API.Models
 {
     public class ApplicationUser
     {

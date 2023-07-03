@@ -1,9 +1,11 @@
 ﻿using Book_Portal_API.Helpers;
 using Book_Portal_API.Models;
+using Book_Portal_API.Payloads;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
@@ -61,22 +63,37 @@ namespace Book_Portal_API.Controllers
         }
 
         [HttpPost("author/register")]
-        public async Task<ActionResult<string>> RegisterAuthor([FromBody] Author author)
+        public async Task<ActionResult<string>> RegisterAuthor([FromBody] AuthorRegisterationRequest request)
         {
-            if (author == null)
+            if (request == null)
             {
                 return BadRequest();
             }
-            if (await CheckUserNameExistsAsync(author.Username))
+            if (await CheckUserNameExistsAsync(request.Username))
             {
                 return BadRequest("Email Already Exists");
             }
-            if (await CheckEmailExistsAsync(author.Email))
+            if (await CheckEmailExistsAsync(request.Email))
             {
                 return BadRequest("Email Already Exists");
             }
 
-            author.Password = PasswordHelper.Encode(author.Password);
+            Author author = new Author()
+            {
+                AuId = GenerateAuthorId(),
+                Username = request.Username,
+                Password = PasswordHelper.Encode(request.Password),
+                Email = request.Email,
+                Role = "author",
+                AuFname = request.AuFname,
+                AuLname = request.AuLname,
+                Phone = request.Phone,
+                Address = request.Address,
+                City = request.City,
+                State = request.State,
+                Zip = request.Zip,
+                Contract = true
+            };
 
             await _context.AddAsync(author);
             await _context.SaveChangesAsync();
@@ -86,28 +103,64 @@ namespace Book_Portal_API.Controllers
 
 
         [HttpPost("publisher/register")]
-        public async Task<ActionResult<string>> Register([FromBody] Publisher publisher)
+        public async Task<ActionResult<string>> Register([FromBody] PublisherRegisterRequest request)
         {
-            if (publisher == null)
+            if (request == null)
             {
                 return BadRequest();
             }
-            if (await CheckUserNameExistsAsync(publisher.Username))
+            if (await CheckUserNameExistsAsync(request.Username))
             {
                 return BadRequest("Email Already Exists");
             }
-            if (await CheckEmailExistsAsync(publisher.Email))
+            if (await CheckEmailExistsAsync(request.Email))
             {
                 return BadRequest("Email Already Exists");
             }
 
-            publisher.Password = PasswordHelper.Encode(publisher.Password);
+            string id = GeneratePublisherId();
 
+            Publisher publisher = new Publisher()
+            {
+                Username = request.Username,
+                Password = PasswordHelper.Encode(request.Password),
+                Email = request.Email,
+                Role = "publisher",
+                PubId = id,
+                PubName = request.PubName,
+                City = request.City,
+                State = request.State,
+                Country = request.Country,
+                PubInfo = new PubInfo()
+                {
+                   PubId = id,
+                   PrInfo = request.PrInfo
+                }
+
+            };
+           
             await _context.Publishers.AddAsync(publisher);
             await _context.SaveChangesAsync();
 
             return Ok("User Registered Successfully");
         }
+
+        [HttpPost("UploadFile")]
+        public async Task<ActionResult<string>> UploadFile([FromForm] FileUpload fileUpload)
+        { 
+            var pubinfo = await _context.PubInfos.Where(pi => pi.PubId == fileUpload.PubId).FirstOrDefaultAsync();
+          
+            await using var memoryStream = new MemoryStream();
+            await fileUpload.file.CopyToAsync(memoryStream);
+                
+
+            pubinfo.Logo = memoryStream.ToArray();
+            _context.SaveChanges();
+
+            return Ok("uploaded");
+
+        }
+
 
         private async Task<bool> CheckUserNameExistsAsync(string username)
         {
@@ -151,6 +204,27 @@ namespace Book_Portal_API.Controllers
             var token = jwtTokenHandler.CreateToken(tokenDiscriptor);
 
             return jwtTokenHandler.WriteToken(token);
+        }
+
+        private string GenerateAuthorId()
+        {
+            Random rd = new Random();
+            string id = rd.Next(100, 999).ToString() + "-" + rd.Next(100, 999).ToString() + "-" + rd.Next(100, 999).ToString();
+            return id;
+        }
+
+        private string GeneratePublisherId()
+        {
+            Random rd = new Random();
+            string id = rd.Next(1000, 9999).ToString();
+            return id;
+        }
+
+        private byte[] GetFileBytes(IFormFile formFile)
+        {
+            using var memoryStream = new MemoryStream();
+            formFile.CopyToAsync(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }
