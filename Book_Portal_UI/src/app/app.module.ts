@@ -11,6 +11,7 @@ import { HomeComponent } from './Layout/home/home.component';
 import { TitleComponent } from './Components/title/title.component';
 import { AuthorRegisterComponent } from './Auth/author-register/author-register.component';
 import { PublisherRegisterComponent } from './Auth/publisher-register/publisher-register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PublisherRegisterComponent } from './Auth/publisher-register/publisher-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

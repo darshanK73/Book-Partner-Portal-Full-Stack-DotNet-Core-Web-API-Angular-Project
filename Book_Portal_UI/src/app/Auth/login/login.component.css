@@ -38,7 +38,7 @@
 .container {
     position: relative;
     max-width: 800px;
-    height: 400px;
+    /* height: 400px; */
     width: 100%;
     background: #ffff;
     border-radius: 20px;
@@ -99,6 +99,7 @@ button{
     text-align: center;
     border: none;
     outline: none;
+    width: 80%;
 }
 
 .container .cover .back .backImg {
@@ -214,6 +215,10 @@ button{
     flex-direction: column;
 }
 
+.error{
+    border: 1px solid red;
+}
+
 .input-box{
     display: flex;
     flex-direction: column;
@@ -225,6 +230,14 @@ button{
     color: grey !important;
     font-size: 12px;
     width: 78%;
+}
+
+small{
+    width: 78%;
+    text-align: start;
+    font-size: 11px;
+    margin-top: 2px;
+    color: red;
 }
 
 .input-boxes .input-box input {

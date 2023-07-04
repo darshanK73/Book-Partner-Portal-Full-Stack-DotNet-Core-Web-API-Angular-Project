@@ -135,6 +135,14 @@ button{
     /* Added text alignment */
 }
 
+small{
+    width: 78%;
+    text-align: start;
+    font-size: 11px;
+    margin-top: 2px;
+    color: red;
+}
+
 input:focus {
     /* Styles for input box when focused */
     outline: none;

@@ -1,5 +1,5 @@
 .container-fluid{
-    height: 100vh;
+    height: 100%;
 }
 
 .row{
@@ -193,6 +193,13 @@ textarea:focus {
 
 #prinfo{
     height: 70px;
+}
+small{
+    width: 78%;
+    text-align: start;
+    font-size: 11px;
+    margin-top: 2px;
+    color: red;
 }
 
 .form-content .input-box input:valid {
