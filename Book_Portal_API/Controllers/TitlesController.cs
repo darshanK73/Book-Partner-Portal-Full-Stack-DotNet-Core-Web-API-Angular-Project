@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Book_Portal_API.Models;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Book_Portal_API.Controllers
 {
+    [Authorize]
     [Route("api/titles")]
     [ApiController]
     public class TitlesController : ControllerBase

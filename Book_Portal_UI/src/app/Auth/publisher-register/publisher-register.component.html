@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-8">
-                <form [formGroup]="registerForm">
+                <form [formGroup]="registerForm" novalidate>
                     <div class="container">
                         <div class="row mb-2">
                             <div class="col">
@@ -72,6 +72,9 @@
                                     <small
                                     *ngIf="registerForm.controls['password1'].dirty && registerForm.hasError('required','password1')">*Please Confirm your Password
                                     </small>
+                                    <!-- <small
+                                    *ngIf="registerForm.hasError('passwordMatchError','password1')">*Password Do Not Match
+                                    </small> -->
                                 </div>
                                 <div class="mb-2">
                                     <label for="country">Country</label>
@@ -86,10 +89,10 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="logo" class="text">Logo</label>
-                                    <input class="" type="file" name="logo" formControlName="logo" id="logo">
-                                    <small
+                                    <input #fileInput type="file"  (change)="onFileChange($event)">
+                                    <!-- <small
                                     *ngIf="registerForm.controls['logo'].dirty && registerForm.hasError('required','logo')">*Logo
-                                    is Required</small>
+                                    is Required</small> -->
                                 </div>
                             </div>
                         </div>

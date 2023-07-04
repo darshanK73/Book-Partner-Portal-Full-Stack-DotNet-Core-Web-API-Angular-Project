@@ -63,7 +63,7 @@ namespace Book_Portal_API.Controllers
         }
 
         [HttpPost("author/register")]
-        public async Task<ActionResult<string>> RegisterAuthor([FromBody] AuthorRegisterationRequest request)
+        public async Task<ActionResult<RegisterResponse>> RegisterAuthor([FromBody] AuthorRegisterationRequest request)
         {
             if (request == null)
             {
@@ -98,12 +98,12 @@ namespace Book_Portal_API.Controllers
             await _context.AddAsync(author);
             await _context.SaveChangesAsync();
 
-            return Ok("User Registered Successfully");
+            return Ok(new RegisterResponse() { Message = "User Registered Successfully"});
         }
 
 
         [HttpPost("publisher/register")]
-        public async Task<ActionResult<string>> Register([FromBody] PublisherRegisterRequest request)
+        public async Task<ActionResult<RegisterResponse>> RegisterPublisher([FromForm] PublisherRegisterRequest request)
         {
             if (request == null)
             {
@@ -111,14 +111,22 @@ namespace Book_Portal_API.Controllers
             }
             if (await CheckUserNameExistsAsync(request.Username))
             {
+                await Console.Out.WriteLineAsync(request.Username);
                 return BadRequest("Email Already Exists");
             }
             if (await CheckEmailExistsAsync(request.Email))
             {
+                await Console.Out.WriteLineAsync(request.Username);
                 return BadRequest("Email Already Exists");
             }
 
             string id = GeneratePublisherId();
+
+
+            await using var memoryStream = new MemoryStream();
+            await request.Logo.CopyToAsync(memoryStream);
+            byte[] arr = memoryStream.ToArray();
+
 
             Publisher publisher = new Publisher()
             {
@@ -133,32 +141,17 @@ namespace Book_Portal_API.Controllers
                 Country = request.Country,
                 PubInfo = new PubInfo()
                 {
-                   PubId = id,
-                   PrInfo = request.PrInfo
+                    PubId = id,
+                    Logo = arr,
+                    PrInfo = request.PrInfo
                 }
 
             };
-           
+
             await _context.Publishers.AddAsync(publisher);
             await _context.SaveChangesAsync();
 
-            return Ok("User Registered Successfully");
-        }
-
-        [HttpPost("UploadFile")]
-        public async Task<ActionResult<string>> UploadFile([FromForm] FileUpload fileUpload)
-        { 
-            var pubinfo = await _context.PubInfos.Where(pi => pi.PubId == fileUpload.PubId).FirstOrDefaultAsync();
-          
-            await using var memoryStream = new MemoryStream();
-            await fileUpload.file.CopyToAsync(memoryStream);
-                
-
-            pubinfo.Logo = memoryStream.ToArray();
-            _context.SaveChanges();
-
-            return Ok("uploaded");
-
+            return Ok(new RegisterResponse() { Message = "User Registered Successfully", Id = id });
         }
 
 
@@ -166,8 +159,7 @@ namespace Book_Portal_API.Controllers
         {
             bool res1 = await _context.Authors.AnyAsync(u => u.Username == username);
 
-            bool res2 = await _context.Publishers.AllAsync(u => u.Username == username);
-
+            bool res2 = await _context.Publishers.AnyAsync(u => u.Username == username);
             return res1 || res2;
         }
 
@@ -175,7 +167,7 @@ namespace Book_Portal_API.Controllers
         {
             bool res1 = await _context.Authors.AnyAsync(u => u.Email == email);
 
-            bool res2 = await _context.Publishers.AllAsync(u => u.Username == email);
+            bool res2 = await _context.Publishers.AnyAsync(u => u.Email == email);
 
             return res1 || res2;
         }

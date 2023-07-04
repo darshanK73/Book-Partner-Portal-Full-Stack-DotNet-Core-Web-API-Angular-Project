@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { AuthorRegisterRequest } from 'src/app/Models/author-register-request';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-author-register',
@@ -10,7 +14,7 @@ export class AuthorRegisterComponent implements OnInit{
 
   registerForm!:FormGroup;
 
-  constructor(private fb:FormBuilder) {}
+  constructor(private fb:FormBuilder, private authService:AuthService,private router:Router,private toast:NgToastService) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -31,7 +35,30 @@ export class AuthorRegisterComponent implements OnInit{
   onSubmit(){
     alert("hello");
     if(this.registerForm.valid){
-      console.log(this.registerForm.value);
+      var obj = this.registerForm.value;
+      let request = new AuthorRegisterRequest();
+      request.username = obj.username;
+      request.password = obj.password;
+      request.address = obj.address;
+      request.auFname = obj.firstName;
+      request.auLname = obj.lastName;
+      request.city = obj.city;
+      request.state = obj.state;
+      request.email = obj.email;
+      request.phone = obj.phone;
+      request.zip = obj.zip;
+      request.address = obj.address;
+
+      this.authService.signupAuthor(request).subscribe({
+        next:(res)=> {
+          this.toast.success({detail:'Success',summary:res.message, duration:5000});
+          this.registerForm.reset();
+          this.router.navigate(["login"])
+        },
+        error:(err) => {
+          this.toast.error({detail:'Error',summary:err.error, duration:5000});
+        }
+      });
     }
     else{
       this.validateFormField(this.registerForm);

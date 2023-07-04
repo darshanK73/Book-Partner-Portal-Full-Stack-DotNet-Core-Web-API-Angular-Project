@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from 'src/app/Services/auth.service';
+import { JwtService } from 'src/app/Services/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +14,7 @@ export class LoginComponent implements OnInit{
 
   loginForm! : FormGroup;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder,private authService:AuthService, private router:Router, private toast:NgToastService, private jwtService:JwtService){}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -22,7 +26,21 @@ export class LoginComponent implements OnInit{
 
   onSubmit(){
     if(this.loginForm.valid){
-      console.log(this.loginForm.value);
+      this.authService.login(this.loginForm.value).subscribe({
+        next:(res)=> {
+          this.authService.storeToken(res.token);
+          this.toast.success({detail:'Success',summary:res.message, duration:5000});
+          let payload = this.authService.decodedToken();
+          this.jwtService.setEmail(payload.email);
+          this.jwtService.setRole(payload.role);
+          this.loginForm.reset();
+          this.router.navigate(["home"])
+        },
+        error:(err) => {
+          console.log(err);
+          this.toast.error({detail:'Error',summary:"Incorrect Password !", duration:5000});
+        }
+      })
     }
     else{
       this.validateFormField(this.loginForm);

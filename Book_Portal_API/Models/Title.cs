@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace Book_Portal_API.Models;
@@ -16,25 +17,25 @@ public partial class Title
     [Required]
     public string Type { get; set; } = null!;
 
-    [Required]
+    [AllowNull]
     public string? PubId { get; set; }
 
-    [Required]
+    [AllowNull]
     public decimal? Price { get; set; }
 
-    [Required]
+    [AllowNull]
     public decimal? Advance { get; set; }
 
-    [Required]
+    [AllowNull]
     public int? Royalty { get; set; }
 
-    [Required]
+    [AllowNull]
     public int? YtdSales { get; set; }
 
-    [Required]
+    [AllowNull]
     public string? Notes { get; set; }
 
-    [Required]
+    [AllowNull]
     public DateTime Pubdate { get; set; }
     public virtual Publisher? Pub { get; set; }
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();

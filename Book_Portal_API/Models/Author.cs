@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace Book_Portal_API.Models;
@@ -8,8 +9,6 @@ namespace Book_Portal_API.Models;
 public partial class Author : ApplicationUser
 {
     [Key]
-    [MaxLength(11)]
-    [MinLength(11)]
     public string AuId { get; set; } = null!;
 
     [Required]
@@ -24,22 +23,16 @@ public partial class Author : ApplicationUser
     [MaxLength(12)]
     public string Phone { get; set; } = null!;
 
-    [Required]
-    [MaxLength(40)]
+    [AllowNull]
     public string? Address { get; set; }
 
-    [Required]
-    [MaxLength(20)]
+    [AllowNull]
     public string? City { get; set; }
 
-    [Required]
-    [MaxLength(2)]
-    [MinLength(2)]
+    [AllowNull]
     public string? State { get; set; }
 
-    [Required]
-    [MaxLength(5)]
-    [MinLength(5)]
+    [AllowNull]
     public string? Zip { get; set; }
 
     [Required]
