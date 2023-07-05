@@ -8,6 +8,8 @@ import { HomeComponent } from './Layout/home/home.component';
 import { AuthGuard } from './Services/auth.guard';
 import { LogGuard } from './Services/log.guard';
 
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+
 const routes: Routes = [
   {path:"",component:LoginComponent},
   {path:"login",component:LoginComponent,canActivate:[LogGuard]},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:"home",component:HomeComponent,children: 
   [
     {path:"title",component:TitleComponent}
-  ],canActivate:[AuthGuard]}
+  ],canActivate:[AuthGuard]},
+
+  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

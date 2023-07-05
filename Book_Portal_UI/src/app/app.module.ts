@@ -15,6 +15,7 @@ import { PublisherRegisterComponent } from './Auth/publisher-register/publisher-
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './Services/token.interceptor';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TokenInterceptor } from './Services/token.interceptor';
     HomeComponent,
     TitleComponent,
     AuthorRegisterComponent,
-    PublisherRegisterComponent
+    PublisherRegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
