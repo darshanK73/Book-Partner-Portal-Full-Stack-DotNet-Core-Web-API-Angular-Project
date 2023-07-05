@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Title } from '../Models/titles';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,6 @@ export class TitleService {
 
   getAllTitles()
   {
-    return this.http.get(this.baseUrl);
+    return this.http.get<Title[]>(this.baseUrl);
   }
 }

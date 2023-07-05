@@ -1,1 +1,20 @@
-<p>title works!</p>
+<div class="wrapper">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let title of titles">
+            <th scope="row">{{title.titleId}}</th>
+            <td scoped="row">{{title.titleId}}</td>
+            <td scoped="row">{{title.price}}</td>
+            <td scoped="row">{{title.notes}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

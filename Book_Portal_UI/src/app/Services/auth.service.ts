@@ -8,6 +8,7 @@ import { LoginResponse } from '../Models/login-response';
 import { PublisherRegisterRequest } from '../Models/publisher-register-request';
 import { RegisterResponse } from '../Models/register-response';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NgToastService } from 'ng-angular-popup';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
   private baseUrl:string = "https://localhost:7022/api/auth";
   private userPayload:any;
 
-  constructor(private http:HttpClient,private router:Router) { 
+  constructor(private http:HttpClient,private router:Router,private toast:NgToastService) { 
     this.userPayload = this.decodedToken();
   }
 
@@ -56,6 +57,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("token");
+    this.toast.success({detail:"Success",summary:"Log out successfully!"});
     this.router.navigate(["login"]);
   }
 
@@ -86,7 +88,7 @@ export class AuthService {
 
   getUserFromToken(){
     if(this.userPayload){
-      return this.userPayload.JSON
+      return JSON.parse(this.userPayload.JSON);
     }
   }
 }

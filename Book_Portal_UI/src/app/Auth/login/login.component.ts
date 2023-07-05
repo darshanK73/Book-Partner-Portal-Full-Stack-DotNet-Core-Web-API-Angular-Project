@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit{
           let payload = this.authService.decodedToken();
           this.jwtService.setEmail(payload.email);
           this.jwtService.setRole(payload.role);
+          this.jwtService.setUser(payload.JSON);
+          console.log(payload.JSON)
           this.loginForm.reset();
           this.router.navigate(["dashboard"])
         },

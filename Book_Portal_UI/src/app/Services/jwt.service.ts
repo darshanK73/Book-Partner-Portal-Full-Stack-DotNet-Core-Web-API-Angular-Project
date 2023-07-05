@@ -7,7 +7,7 @@ import {BehaviorSubject} from 'rxjs'
 export class JwtService {
   private role$ = new BehaviorSubject<string>("");
   private email$ = new BehaviorSubject<string>("");
-  private user$ = new BehaviorSubject<string>("");
+  private user$ = new BehaviorSubject<any>({});
 
   constructor() { }
 
@@ -32,6 +32,6 @@ export class JwtService {
   }
 
   public setUser(user:string){
-    this.user$.next(user);
+    this.user$.next(JSON.parse(user));
   }
 }
