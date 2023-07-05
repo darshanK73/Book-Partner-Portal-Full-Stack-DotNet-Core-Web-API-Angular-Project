@@ -57,7 +57,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("token");
-    this.toast.success({detail:"Success",summary:"Log out successfully!"});
+    this.toast.success({detail:"Success",summary:"Log out successfully!",duration:5000});
     this.router.navigate(["login"]);
   }
 

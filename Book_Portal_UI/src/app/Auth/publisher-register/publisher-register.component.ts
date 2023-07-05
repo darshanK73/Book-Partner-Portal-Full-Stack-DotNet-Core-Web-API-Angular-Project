@@ -67,7 +67,6 @@ export class PublisherRegisterComponent implements OnInit {
   // }
   
   onSubmit() {
-    alert("hello");
     if (this.registerForm.valid) {
       var obj = this.registerForm.value;
       var formData = new FormData();
@@ -88,7 +87,7 @@ export class PublisherRegisterComponent implements OnInit {
           this.router.navigate(["login"])
         },
         error: (err) => {
-          this.toast.error({detail:'Error',summary:err.error, duration:5000});
+          this.toast.error({detail:'Error',summary:err.error.message, duration:5000});
         }
       });
     }
@@ -106,8 +105,6 @@ export class PublisherRegisterComponent implements OnInit {
     this.registerForm.patchValue({
       logo: file
     });
-
-    console.log(this.registerForm);
 
     this.cd.markForCheck();
   };

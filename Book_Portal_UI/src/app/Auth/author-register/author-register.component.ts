@@ -33,7 +33,6 @@ export class AuthorRegisterComponent implements OnInit{
   }
 
   onSubmit(){
-    alert("hello");
     if(this.registerForm.valid){
       var obj = this.registerForm.value;
       let request = new AuthorRegisterRequest();
@@ -56,7 +55,7 @@ export class AuthorRegisterComponent implements OnInit{
           this.router.navigate(["login"])
         },
         error:(err) => {
-          this.toast.error({detail:'Error',summary:err.error, duration:5000});
+          this.toast.error({detail:'Error',summary:err.error.message, duration:5000});
         }
       });
     }

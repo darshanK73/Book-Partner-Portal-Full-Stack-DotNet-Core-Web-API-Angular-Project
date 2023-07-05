@@ -34,13 +34,11 @@ export class LoginComponent implements OnInit{
           this.jwtService.setEmail(payload.email);
           this.jwtService.setRole(payload.role);
           this.jwtService.setUser(payload.JSON);
-          console.log(payload.JSON)
           this.loginForm.reset();
           this.router.navigate(["dashboard"])
         },
         error:(err) => {
-          console.log(err);
-          this.toast.error({detail:'Error',summary:"Incorrect Password !", duration:5000});
+          this.toast.error({detail:'Error',summary:err.error.message, duration:5000});
         }
       })
     }

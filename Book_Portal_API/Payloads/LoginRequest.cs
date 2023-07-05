@@ -1,4 +1,4 @@
-﻿namespace Book_Portal_API.Models
+﻿namespace Book_Portal_API.Payloads
 {
     public class LoginRequest
     {

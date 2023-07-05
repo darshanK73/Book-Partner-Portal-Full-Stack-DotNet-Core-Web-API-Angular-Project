@@ -9,10 +9,10 @@ using Book_Portal_API.Models;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Authorization;
+using Book_Portal_API.Payloads;
 
 namespace Book_Portal_API.Controllers
 {
-    [Authorize]
     [Route("api/titles")]
     [ApiController]
     public class TitlesController : ControllerBase
@@ -26,26 +26,62 @@ namespace Book_Portal_API.Controllers
 
         // POST: api/titles
         [HttpPost]
-        public async Task<ActionResult<string>> PostTitle(Title title)
+        public async Task<ActionResult<string>> PostTitle(TitlePublishRequest titleRequest)
         {
-            _context.Titles.Add(title);
-            try
+            if(titleRequest == null)
             {
-                await _context.SaveChangesAsync();
+                return BadRequest();
             }
-            catch (DbUpdateException)
+            
+            var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
+
+            if(pub == null)
             {
-                if (TitleExists(title.TitleId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(new { Message = "Publisher Do Not Exists" });
             }
 
-            return Ok("Recoard Created Successfully");
+            var titleauthors = new List<Titleauthor>();
+
+            var bookId = CreateTitleId(titleRequest.Type);
+
+            foreach(var auid in titleRequest.AuIds)
+            {
+                var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
+                if(author == null)
+                {
+                    return BadRequest(new { Message = "Author with given id not found" });
+                }
+                titleauthors.Add(new Titleauthor()
+                {
+                    AuId = auid,
+                    TitleId = bookId,
+                    AuOrd = titleRequest.AuOrd,
+                    Royaltyper = titleRequest.Royaltyper,
+                });
+
+            }
+
+            Title title = new Title()
+            {
+                TitleId = bookId,
+                Title1 = titleRequest.Title1,
+                Type = titleRequest.Type,
+                PubId = titleRequest.PubId,
+                Price = titleRequest.Price,
+                Advance = titleRequest.Advance,
+                Royalty = titleRequest.Royalty,
+                YtdSales = titleRequest.YtdSales,
+                Notes = titleRequest.Notes,
+                Pubdate = titleRequest.Pubdate,
+                Pub = pub,
+                Titleauthors = titleauthors,
+                Sales = new List<Sale>()
+            };
+
+            await _context.Titles.AddAsync(title);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Recoard Created Successfully" });
         }
 
         // GET: api/titles
@@ -209,32 +245,63 @@ namespace Book_Portal_API.Controllers
 
         // PUT: api/titles/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTitle(string id, Title title)
+        public async Task<IActionResult> PutTitle(string id, TitlePublishRequest titleRequest)
         {
-            if (id != title.TitleId)
+            if (titleRequest == null)
             {
                 return BadRequest();
             }
 
-            _context.Entry(title).State = EntityState.Modified;
+            var title = await _context.Titles.FindAsync(id);
 
-            try
+            if(title == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TitleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest();
             }
 
-            return NoContent();
+            var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
+
+            if (pub == null)
+            {
+                return BadRequest(new { Message = "Publisher Do Not Exists" });
+            }
+
+            var titleauthors = new List<Titleauthor>();
+
+
+            foreach (var auid in titleRequest.AuIds)
+            {
+                var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
+                if (author == null)
+                {
+                    return BadRequest(new { Message = "Author with given id not found" });
+                }
+                titleauthors.Add(new Titleauthor()
+                {
+                    AuId = auid,
+                    TitleId = id,
+                    AuOrd = titleRequest.AuOrd,
+                    Royaltyper = titleRequest.Royaltyper,
+                });
+
+            }
+
+            title.Title1 = titleRequest.Title1;
+            title.Type = titleRequest.Type;
+            title.PubId = titleRequest.PubId;
+            title.Price = titleRequest.Price;
+            title.Advance = titleRequest.Advance;
+            title.Royalty = titleRequest.Royalty;
+            title.YtdSales = titleRequest.YtdSales;
+            title.Notes = titleRequest.Notes;
+            title.Pubdate = titleRequest.Pubdate;
+            title.Pub = pub;
+            title.Titleauthors = titleauthors;
+
+            await _context.Titles.AddAsync(title);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Recoard Created Successfully" });
         }
 
         // DELETE: api/titles/{id}
@@ -257,12 +324,15 @@ namespace Book_Portal_API.Controllers
             return NoContent();
         }
 
-
-
-
         private bool TitleExists(string id)
         {
             return (_context.Titles?.Any(e => e.TitleId == id)).GetValueOrDefault();
+        }
+
+        private string CreateTitleId(string type)
+        {
+            Random rd = new Random();
+            return type.Substring(0,2) +  rd.Next(1000, 9999).ToString();
         }
     }
 }

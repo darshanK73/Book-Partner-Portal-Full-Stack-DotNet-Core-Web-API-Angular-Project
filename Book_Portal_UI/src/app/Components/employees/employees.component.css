@@ -2,9 +2,9 @@
     position: absolute;
     top: 80px;
     /* left:240px; */
-    /* width: calc(100%-240px);
-    height: calc(100%-80px); */
+    /* width: calc(100%-240px); */
     width: 100%;
+    /* height: calc(100%-80px); */
     font-size: 12px;
     background-color:  rgb(223, 220, 232);
 }

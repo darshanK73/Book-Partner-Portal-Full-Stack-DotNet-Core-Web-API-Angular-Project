@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <div class="holder">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Employee ID</th>
+              <th scope="col">Initial</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Job ID</th>
+              <th scope="col">Job Level</th>
+              <th scope="col">Publisher ID</th>
+              <th scope="col">Hire Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees">
+              <th scope="row">{{employee.empId}}</th>
+              <td scoped="row">{{employee.minit}}</td>
+              <td scoped="row">{{employee.fname}}</td>
+              <td scoped="row">{{employee.lname}}</td>
+              <td scoped="row">{{employee.jobId}}</td>
+              <td scoped="row">{{employee.jobLvl}}</td>
+              <td scoped="row">{{employee.pubId}}</td>
+              <td scoped="row">{{employee.hireDate | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+<!--   
+  empId!: string;
+  fname!: string;
+  minit!: string;
+  lname!: string;
+  jobId!: number;
+  jobLvl!: number;
+  pubId!: string;
+  hireDate!: Date; -->

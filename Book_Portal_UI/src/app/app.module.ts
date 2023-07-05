@@ -13,6 +13,8 @@ import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './Services/token.interceptor';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { AuthorsComponent } from './Components/authors/authors.component';
+import { EmployeesComponent } from './Components/employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ProfileComponent } from './Components/profile/profile.component';
     AuthorRegisterComponent,
     PublisherRegisterComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    AuthorsComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,

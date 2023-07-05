@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { JwtService } from 'src/app/Services/jwt.service';
-import { TitleService } from 'src/app/Services/title.service';
+import { AuthorService } from 'src/app/Services/author.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,14 +15,11 @@ export class DashboardComponent implements OnInit {
   user!:any;
   email!:string;
 
-  constructor(private titleService:TitleService,private jwtService:JwtService,private authService:AuthService){}
+  constructor(private jwtService:JwtService,private authService:AuthService){}
   ngOnInit(): void {
     this.jwtService.getUser().subscribe(val => {
       let u = this.authService.getUserFromToken();
       this.user = u || val;
-      console.log(u);
-      console.log(val);
-      console.log(this.user);
     });
 
     this.jwtService.getRole().subscribe(val => {

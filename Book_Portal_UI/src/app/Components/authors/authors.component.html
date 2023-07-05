@@ -1,0 +1,48 @@
+<div class="wrapper">
+    <div class="holder">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Author ID</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Address</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Zip</th>
+              <th scope="col">Is Contract</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let author of authors">
+              <th scope="row">{{author.auId}}</th>
+              <td scoped="row">{{author.username}}</td>
+              <td scoped="row">{{author.email}}</td>
+              <td scoped="row">{{author.auFname}}</td>
+              <td scoped="row">{{author.auFname}}</td>
+              <td scoped="row">{{author.phone}}</td>
+              <td scoped="row">{{author.address}}</td>
+              <td scoped="row">{{author.city}}</td>
+              <td scoped="row">{{author.state}}</td>
+              <td scoped="row">{{author.zip}}</td>
+              <td scoped="row">{{author.contract}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  
+  <!-- auId!: string;
+    username!: string;
+    email!: string;
+    auLname!: string;
+    auFname!: string;
+    phone!: string;
+    address!: string;
+    city!: string;
+    state!: string;
+    zip!: string;
+    contract!: true; -->

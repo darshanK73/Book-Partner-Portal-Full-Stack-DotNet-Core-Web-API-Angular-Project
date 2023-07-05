@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Title } from 'src/app/Models/titles';
 import { AuthService } from 'src/app/Services/auth.service';
 import { JwtService } from 'src/app/Services/jwt.service';
-import { TitleService } from 'src/app/Services/title.service';
+import { AuthorService } from 'src/app/Services/author.service';
 
 @Component({
   selector: 'app-title',
@@ -14,7 +14,7 @@ export class TitleComponent implements OnInit{
   
   titles:Title[] = [];
 
-  constructor(private titleService:TitleService,private jwtService:JwtService,private authService:AuthService,private router:Router){}
+  constructor(private titleService:AuthorService,private jwtService:JwtService,private authService:AuthService,private router:Router){}
   
   ngOnInit(): void {
     this.titleService.getAllTitles().subscribe({next:(res)=> {

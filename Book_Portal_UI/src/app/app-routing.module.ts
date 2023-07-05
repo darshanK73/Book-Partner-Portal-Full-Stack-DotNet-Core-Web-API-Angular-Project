@@ -9,6 +9,8 @@ import { LogGuard } from './Services/log.guard';
 
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { AuthorsComponent } from './Components/authors/authors.component';
+import { EmployeesComponent } from './Components/employees/employees.component';
 
 const routes: Routes = [
   {path:"",component:DashboardComponent,canActivate:[AuthGuard]},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path:"publisher-register",component:PublisherRegisterComponent,canActivate:[LogGuard]},
   { path: "dashboard", component: DashboardComponent,children: 
   [
-    {path:"title",component:TitleComponent},
+    {path:"titles",component:TitleComponent},
+    {path:"authors",component:AuthorsComponent},
+    {path:"employees",component:EmployeesComponent},
     {path:"profile",component:ProfileComponent}
   ], canActivate: [AuthGuard] 
   }

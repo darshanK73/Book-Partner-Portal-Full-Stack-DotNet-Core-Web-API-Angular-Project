@@ -51,7 +51,7 @@ namespace Book_Portal_API.Controllers
             if (!PasswordHelper.Decode(request.Password, user.Password))
             {
                 await Console.Out.WriteLineAsync(request.Password + " ---------------- " + user.Password);
-                return BadRequest("Password Is Incorrect");
+                return BadRequest(new { Message = "Password Is Incorrect" });
             }
 
             LoginResponse response = new LoginResponse();
@@ -71,11 +71,11 @@ namespace Book_Portal_API.Controllers
             }
             if (await CheckUserNameExistsAsync(request.Username))
             {
-                return BadRequest("Email Already Exists");
+                return BadRequest(new { Message = "Username Already Exists" });
             }
             if (await CheckEmailExistsAsync(request.Email))
             {
-                return BadRequest("Email Already Exists");
+                return BadRequest(new { Message = "Email Already Exists" });
             }
 
             Author author = new Author()
@@ -112,12 +112,11 @@ namespace Book_Portal_API.Controllers
             if (await CheckUserNameExistsAsync(request.Username))
             {
                 await Console.Out.WriteLineAsync(request.Username);
-                return BadRequest("Email Already Exists");
+                return BadRequest(new { Message = "Username Already Exists" }) ;
             }
             if (await CheckEmailExistsAsync(request.Email))
             {
-                await Console.Out.WriteLineAsync(request.Username);
-                return BadRequest("Email Already Exists");
+                return BadRequest(new { Message = "Email Already Exists" });
             }
 
             string id = GeneratePublisherId();
@@ -151,7 +150,7 @@ namespace Book_Portal_API.Controllers
             await _context.Publishers.AddAsync(publisher);
             await _context.SaveChangesAsync();
 
-            return Ok(new RegisterResponse() { Message = "User Registered Successfully", Id = id });
+            return Ok(new RegisterResponse() { Message = "User Registered Successfully"});
         }
 
 
@@ -210,13 +209,6 @@ namespace Book_Portal_API.Controllers
             Random rd = new Random();
             string id = rd.Next(1000, 9999).ToString();
             return id;
-        }
-
-        private byte[] GetFileBytes(IFormFile formFile)
-        {
-            using var memoryStream = new MemoryStream();
-            formFile.CopyToAsync(memoryStream);
-            return memoryStream.ToArray();
         }
     }
 }
