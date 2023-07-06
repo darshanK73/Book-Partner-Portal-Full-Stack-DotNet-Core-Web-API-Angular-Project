@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Author } from '../Models/author';
 import { Employee } from '../Models/employee';
-import { Title } from '../Models/titles';
+import { Title } from '../Models/title';
 
 @Injectable({
   providedIn: 'root'

@@ -15,6 +15,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AuthorsComponent } from './Components/authors/authors.component';
 import { EmployeesComponent } from './Components/employees/employees.component';
+import { PublishersComponent } from './Components/publishers/publishers.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EmployeesComponent } from './Components/employees/employees.component';
     DashboardComponent,
     ProfileComponent,
     AuthorsComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    PublishersComponent
   ],
   imports: [
     BrowserModule,

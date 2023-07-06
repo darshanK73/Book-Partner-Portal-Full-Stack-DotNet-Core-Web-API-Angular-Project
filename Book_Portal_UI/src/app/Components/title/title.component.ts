@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Title } from 'src/app/Models/titles';
+import { Title } from 'src/app/Models/title';
 import { AuthService } from 'src/app/Services/auth.service';
 import { JwtService } from 'src/app/Services/jwt.service';
 import { AuthorService } from 'src/app/Services/author.service';
