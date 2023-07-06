@@ -9,6 +9,7 @@ using Book_Portal_API.Models;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
 using Book_Portal_API.Helpers;
+using Book_Portal_API.Payloads;
 
 namespace Book_Portal_API.Controllers
 {
@@ -47,6 +48,7 @@ namespace Book_Portal_API.Controllers
             return Ok("Record Created Successfully");
         }
 
+
         // GET: api/authors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
@@ -56,6 +58,28 @@ namespace Book_Portal_API.Controllers
               return NotFound();
           }
             return await _context.Authors.ToListAsync();
+        }
+
+        [HttpGet("allId")]
+        public async Task<ActionResult<IEnumerable<AuthorWithId>>> GetAllAuthorsId()
+        {
+            if (_context.Authors == null)
+            {
+                return NotFound();
+            }
+            List<AuthorWithId> authorsIds = new List<AuthorWithId>();
+
+            var authors = await _context.Authors.ToListAsync();
+
+            foreach (var author in authors)
+            {
+                authorsIds.Add(new AuthorWithId()
+                {
+                    AuthorId = author.AuId,
+                    AuthorName = author.AuFname + " " + author.AuLname
+                });
+            }
+            return Ok(authorsIds);
         }
 
         // GET: api/authors/lname/{ln}

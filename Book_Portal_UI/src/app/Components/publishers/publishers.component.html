@@ -1,1 +1,45 @@
-<p>publishers works!</p>
+<div class="wrapper">
+    <div class="holder">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">User Name</th>
+              <th scope="col">Password</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">Publisher Id</th>
+              <th scope="col">Publisher Name</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let publisher of publishers">
+              <th scope="row">{{publisher.username}}</th>
+              <td scoped="row">{{publisher.password}}</td>
+              <td scoped="row">{{publisher.email}}</td>
+              <td scoped="row">{{publisher.role}}</td>
+              <td scoped="row">{{publisher.pubId}}</td>
+              <td scoped="row">{{publisher.pubName}}</td>
+              <td scoped="row">{{publisher.city}}</td>
+              <td scoped="row">{{publisher.state}}</td>
+              <td scoped="row">{{publisher.country}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  
+
+  <!-- export class Publisher{
+    username!: string;
+    password! : string;
+    email! : string;
+    role! : string;
+    pubId! : string;
+    pubName! : string;
+    city! : string;
+    state! : string;
+    country! : string; 
+} -->

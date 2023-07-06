@@ -1,0 +1,100 @@
+.wrapper{
+    position: absolute;
+    top: 80px;
+    /* left:240px; */
+    /* width: calc(100%-240px);
+    height: calc(100%-80px); */
+    width: 100%;
+    font-size: 16px;
+    background-color:  rgb(223, 220, 232);
+}
+
+.holder{
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+form{
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    font-size: 16px;
+    height: calc(100vh - 120px);
+}
+
+.custom-rounded {
+    border-radius: 20px;
+    /* height: 480px;
+    width: 850px; */
+}
+
+.labels {
+    font-size: 12px !important;
+    color: grey;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #6477e2;
+    background-color: #edf0f5;
+}
+
+.profile-button {
+    background: #5066e1;
+    box-shadow: none;
+    border: none;
+}
+
+.form-control.additional-information {
+    height: 60px;
+}
+
+.form-control::placeholder {
+    font-size: 12px;
+    color: gray;
+    opacity: 60%;
+}
+
+.form-control {
+    border-radius: 10px !important;
+    background-color: #edf0f5;
+    border: none;
+    outline: none;
+}
+
+.profile-button {
+    background: #5066e1;
+    box-shadow: none;
+    border: none;
+    margin-top: 10px;
+    /* Adjust the margin as desired */
+    position: relative;
+    /* Adjust the position as desired */
+}
+
+.profile-button:hover {
+    background: #6477e2;
+}
+
+.profile-button:focus {
+    background: #6477e2;
+    box-shadow: none;
+}
+
+.profile-button:active {
+    background: #6477e2;
+    box-shadow: none;
+}
+
+.back:hover {
+    color: #6477e2;
+    cursor: pointer;
+}
+
+.add-experience:hover {
+    background: #878df8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #8282ff;
+}
