@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="holder">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Store ID</th>
+              <th scope="col">Store Name</th>
+              <th scope="col">Store Address</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Zip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let store of stores">
+              <th scope="row">{{store.storId}}</th>
+              <td scoped="row">{{store.storName}}</td>
+              <td scoped="row">{{store.storAddress}}</td>
+              <td scoped="row">{{store.city}}</td>
+              <td scoped="row">{{store.state}}</td>
+              <td scoped="row">{{store.zip}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+
+
+<!-- storId!: string;
+    storName! : string;
+    storAddress !: string;
+    city! : string;
+    state! : string;
+    zip! : string; -->

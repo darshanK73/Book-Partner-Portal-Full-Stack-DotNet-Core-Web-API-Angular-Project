@@ -16,6 +16,10 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { AuthorsComponent } from './Components/authors/authors.component';
 import { EmployeesComponent } from './Components/employees/employees.component';
 import { PublishersComponent } from './Components/publishers/publishers.component';
+import { OwntitlesComponent } from './Components/owntitles/owntitles.component';
+import { StoresComponent } from './Components/stores/stores.component';
+import { TitleRequestComponent } from './Components/title-request/title-request.component';
+import { TitleUpdateComponent } from './Components/title-update/title-update.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { PublishersComponent } from './Components/publishers/publishers.componen
     ProfileComponent,
     AuthorsComponent,
     EmployeesComponent,
-    PublishersComponent
+    PublishersComponent,
+    OwntitlesComponent,
+    StoresComponent,
+    TitleRequestComponent,
+    TitleUpdateComponent
   ],
   imports: [
     BrowserModule,
