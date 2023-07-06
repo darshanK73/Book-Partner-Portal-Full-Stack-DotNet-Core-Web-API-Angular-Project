@@ -1,1 +1,36 @@
-<p>publishers works!</p>
+<div class="wrapper">
+    <div class="holder">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">publisher ID</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Address</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Zip</th>
+              <th scope="col">Is Contract</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let publisher of publishers">
+              <th scope="row">{{publisher.auId}}</th>
+              <td scoped="row">{{publisher.username}}</td>
+              <td scoped="row">{{publisher.email}}</td>
+              <td scoped="row">{{publisher.auFname}}</td>
+              <td scoped="row">{{publisher.auFname}}</td>
+              <td scoped="row">{{publisher.phone}}</td>
+              <td scoped="row">{{publisher.address}}</td>
+              <td scoped="row">{{publisher.city}}</td>
+              <td scoped="row">{{publisher.state}}</td>
+              <td scoped="row">{{publisher.zip}}</td>
+              <td scoped="row">{{publisher.contract}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
