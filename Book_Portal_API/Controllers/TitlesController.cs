@@ -236,6 +236,7 @@ namespace Book_Portal_API.Controllers
 
             var titleRequest = new TitleResponse()
             {
+                TitleId = title.TitleId,
                 Title1 = title.Title1,
                 Type = title.Type,
                 PubId = title.PubId,
@@ -277,7 +278,7 @@ namespace Book_Portal_API.Controllers
 
         // PUT: api/titles/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTitle(string id, TitlePublishRequest titleRequest)
+        public async Task<IActionResult> PutTitle(string id, TitleUpdateRequest titleRequest)
         {
             if (titleRequest == null)
             {
@@ -291,48 +292,66 @@ namespace Book_Portal_API.Controllers
                 return BadRequest();
             }
 
-            var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
+            //var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
 
-            if (pub == null)
-            {
-                return BadRequest(new { Message = "Publisher Do Not Exists" });
-            }
+            //if (pub == null)
+            //{
+            //    return BadRequest(new { Message = "Publisher Do Not Exists" });
+            //}
 
-            var titleauthors = new List<Titleauthor>();
+            //var titleauthors = new List<Titleauthor>();
 
+            //foreach (var auid in titleRequest.AuIds)
+            //{
+            //    var ta = await _context.Titleauthors.Where(ta => ta.TitleId == id && ta.AuId == auid).FirstOrDefaultAsync();
+            //    if (ta == null)
+            //    {
 
-            foreach (var auid in titleRequest.AuIds)
-            {
-                var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
-                if (author == null)
-                {
-                    return BadRequest(new { Message = "Author with given id not found" });
-                }
-                titleauthors.Add(new Titleauthor()
-                {
-                    AuId = auid,
-                    TitleId = id,
-                    AuOrd = titleRequest.AuOrd,
-                    Royaltyper = titleRequest.Royaltyper,
-                });
+            //    var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
+            //    if (author == null)
+            //    {
+            //        return BadRequest(new { Message = "Author with given id not found" });
+            //    }
+            //    titleauthors.Add(new Titleauthor()
+            //    {
+            //        AuId = auid,
+            //        TitleId = id,
+            //        AuOrd = titleRequest.AuOrd,
+            //        Royaltyper = titleRequest.Royaltyper,
+            //    });
+            //    }
 
-            }
+            //}
 
             title.Title1 = titleRequest.Title1;
             title.Type = titleRequest.Type;
-            title.PubId = titleRequest.PubId;
             title.Price = titleRequest.Price;
             title.Advance = titleRequest.Advance;
             title.Royalty = titleRequest.Royalty;
             title.YtdSales = titleRequest.YtdSales;
             title.Notes = titleRequest.Notes;
-            title.Pubdate = titleRequest.Pubdate;
-            title.Pub = pub;
-            title.Titleauthors = titleauthors;
+            //title.Pubdate = titleRequest.Pubdate;
 
-            await _context.Titles.AddAsync(title);
-            await _context.SaveChangesAsync();
 
+            _context.Entry(title).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TitleExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+           
             return Ok(new { Message = "Recoard Created Successfully" });
         }
 

@@ -1,17 +1,8 @@
 <div class="wrapper">
     <div class="holder">
-        {{titleId}}
-        <!-- {{authorIds}} -->
-        <!-- <p *ngFor="let author of authorIds">{{author.authorId}}</p> -->
-        <table>
-            <tr *ngFor="let author of authorIds">
-                <th scope="row">{{author.authorName}}</th>
-                
-              </tr>
-        </table>
         <form [formGroup]="titleUpdateForm">
             <div class="col-12">
-                <div class="py-5 pl-3 pr-2">
+                <div class="pl-3 pr-2">
                     <div class="d-flex justify-content-between align-items-right mb-3">
                         <h4 class="text-right">Book Title Details</h4>
                     </div>
@@ -51,7 +42,7 @@
                         <div class="col-md-4"><label class="labels">Royal Typer</label><input type="number"
                                 class="form-control rounded" placeholder="Type of Book" formControlName="royaltyper">
                         </div>
-                        <div class="col-md-4"><label class="labels">Author Order </label><input type="number"
+                        <div class="col-md-4"><label class="labels">Number of Authors </label><input type="number"
                                 class="form-control rounded" placeholder="Type of Book" formControlName="auOrd">
                         </div>
                         <!-- <div class="col-md-4">
