@@ -16,6 +16,8 @@ import { PublishersComponent } from './Components/publishers/publishers.componen
 import { StoresComponent } from './Components/stores/stores.component';
 import { TitleRequestComponent } from './Components/title-request/title-request.component';
 import { TitleUpdateComponent } from './Components/title-update/title-update.component';
+import { AuthorProfileComponent } from './Components/author-profile/author-profile.component';
+import { PublisherProfileComponent } from './Components/publisher-profile/publisher-profile.component';
 
 const routes: Routes = [
   {path:"",component:DashboardComponent,canActivate:[AuthGuard]},
@@ -32,7 +34,9 @@ const routes: Routes = [
     {path: "publishers", component:PublishersComponent},
     {path: "stores", component:StoresComponent},
     {path: "title-request", component:TitleRequestComponent},
-    {path: "title-update/:titleId", component:TitleUpdateComponent}
+    {path: "title-update/:titleId", component:TitleUpdateComponent},
+    {path: "author-profile", component:AuthorProfileComponent},
+    {path: "publisher-profile", component:PublisherProfileComponent}
   ], canActivate: [AuthGuard] 
   }
 ];

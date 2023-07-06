@@ -89,9 +89,11 @@
       </div>
       <div class="profile-details">
         <img src="../../../assets/img/profile.png" alt="">
-        <a routerLink="dashboard/profile" class="prof">
-          <span class="admin_name" *ngIf="isLoggedInPublisher()">{{user.PubName | titlecase}}</span>
-          <span class="admin_name" *ngIf="isLoggedInAuthor()">{{user.AuFname +' '+ user.AuLname | titlecase}}</span>
+        <a routerLink="/dashboard/publisher-profile" class="prof" *ngIf="isLoggedInPublisher()">
+          <span class="admin_name">{{user.PubName | titlecase}}</span>
+        </a>
+        <a routerLink="/dashboard/author-profile" class="prof" *ngIf="isLoggedInAuthor()">
+          <span class="admin_name">{{user.AuFname +' '+ user.AuLname | titlecase}}</span>
         </a>
       </div>
     </nav>

@@ -20,6 +20,8 @@ import { OwntitlesComponent } from './Components/owntitles/owntitles.component';
 import { StoresComponent } from './Components/stores/stores.component';
 import { TitleRequestComponent } from './Components/title-request/title-request.component';
 import { TitleUpdateComponent } from './Components/title-update/title-update.component';
+import { AuthorProfileComponent } from './Components/author-profile/author-profile.component';
+import { PublisherProfileComponent } from './Components/publisher-profile/publisher-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { TitleUpdateComponent } from './Components/title-update/title-update.com
     OwntitlesComponent,
     StoresComponent,
     TitleRequestComponent,
-    TitleUpdateComponent
+    TitleUpdateComponent,
+    AuthorProfileComponent,
+    PublisherProfileComponent
   ],
   imports: [
     BrowserModule,
