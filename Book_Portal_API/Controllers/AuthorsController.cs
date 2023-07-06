@@ -58,6 +58,17 @@ namespace Book_Portal_API.Controllers
             return await _context.Authors.ToListAsync();
         }
 
+        // GET: api/authors/owntitles
+        [HttpGet("owntitles")]
+        public async Task<ActionResult<IEnumerable<Author>>> GetOwnTitles()
+        {
+            if (_context.Authors == null)
+            {
+                return NotFound();
+            }
+            return await _context.Authors.ToListAsync();
+        }
+
         // GET: api/authors/lname/{ln}
         [HttpGet("lname/{ln}")]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthorByLastName(string ln)
