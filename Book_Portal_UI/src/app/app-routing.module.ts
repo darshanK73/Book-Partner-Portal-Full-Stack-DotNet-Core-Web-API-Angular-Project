@@ -6,11 +6,16 @@ import { PublisherRegisterComponent } from './Auth/publisher-register/publisher-
 import { TitleComponent } from './Components/title/title.component';
 import { AuthGuard } from './Services/auth.guard';
 import { LogGuard } from './Services/log.guard';
+import { OwntitlesComponent } from './Components/owntitles/owntitles.component';
 
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { AuthorsComponent } from './Components/authors/authors.component';
 import { EmployeesComponent } from './Components/employees/employees.component';
+import { PublishersComponent } from './Components/publishers/publishers.component';
+import { StoresComponent } from './Components/stores/stores.component';
+import { TitleRequestComponent } from './Components/title-request/title-request.component';
+import { TitleUpdateComponent } from './Components/title-update/title-update.component';
 
 const routes: Routes = [
   {path:"",component:DashboardComponent,canActivate:[AuthGuard]},
@@ -22,7 +27,12 @@ const routes: Routes = [
     {path:"titles",component:TitleComponent},
     {path:"authors",component:AuthorsComponent},
     {path:"employees",component:EmployeesComponent},
-    {path:"profile",component:ProfileComponent}
+    {path:"profile",component:ProfileComponent},
+    {path: "owntitles", component:OwntitlesComponent},
+    {path: "publishers", component:PublishersComponent},
+    {path: "stores", component:StoresComponent},
+    {path: "title-request", component:TitleRequestComponent},
+    {path: "title-update/:titleId", component:TitleUpdateComponent}
   ], canActivate: [AuthGuard] 
   }
 ];

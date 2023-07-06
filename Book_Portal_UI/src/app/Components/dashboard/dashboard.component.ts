@@ -57,27 +57,4 @@ export class DashboardComponent implements OnInit {
     this.authService.logout();
   }
 
-  // dropdown()
-  // {
-  //   let sidebar = document.querySelector(".sidebar");
-  //       let sidebarBtn = document.querySelector(".sidebarBtn");
-  //       sidebarBtn.onclick = function () {
-  //           sidebar.classList.toggle("active");
-  //           if (sidebar.classList.contains("active")) {
-  //               sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-  //           } else
-  //               sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-  //       }
-
-
-  //       let dropdownMenu = document.querySelector(".dropdown-menu");
-  //       let profileDetails = document.querySelector(".profile-details");
-
-  //       profileDetails.addEventListener("click", function () {
-  //           dropdownMenu.classList.toggle("active");
-  //       });
-  // }
-
-
-
 }

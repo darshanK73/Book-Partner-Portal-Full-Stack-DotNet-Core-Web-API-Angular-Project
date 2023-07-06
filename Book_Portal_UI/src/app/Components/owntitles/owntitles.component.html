@@ -1,0 +1,45 @@
+<div class="wrapper">
+    <div class="holder">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Title ID</th>
+              <th scope="col">Publisher ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Price</th>
+              <th scope="col">Date of Publish</th>
+              <th scope="col">Royalty</th>
+              <th scope="col">Year To Date Sales</th>
+              <th scope="col">Type</th>
+              <th scope="col">Notes</th>
+              <th scope="col">Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let title of titles">
+              <th scope="row">{{title.titleId}}</th>
+              <td scoped="row">{{title.pubId}}</td>
+              <td scoped="row">{{title.title1}}</td>
+              <td scoped="row">{{title.price}}</td>
+              <td scoped="row">{{title.pubdate | date}}</td>
+              <td scoped="row">{{title.royalty}}</td>
+              <td scoped="row">{{title.ytdSales}}</td>
+              <td scoped="row">{{title.type}}</td>
+              <td scoped="row">{{title.notes}}</td>
+              <td scoped="row"> <button (click)="updateTitle(title)">Update</button> </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  
+  <!-- advance!: number;
+      notes!:string;
+      price!:number;
+      pubId!:string;
+      pubdate!:Date;
+      royalty!:number;
+      title1!:string;
+      titleId!:string;
+      type!:string;
+      ytdSales!:number; -->

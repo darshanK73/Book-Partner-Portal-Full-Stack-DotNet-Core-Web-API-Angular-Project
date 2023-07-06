@@ -9,6 +9,7 @@ using Book_Portal_API.Models;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
 using Book_Portal_API.Helpers;
+using Book_Portal_API.Payloads;
 
 namespace Book_Portal_API.Controllers
 {
@@ -47,6 +48,7 @@ namespace Book_Portal_API.Controllers
             return Ok("Record Created Successfully");
         }
 
+
         // GET: api/authors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
@@ -58,15 +60,36 @@ namespace Book_Portal_API.Controllers
             return await _context.Authors.ToListAsync();
         }
 
+<<<<<<< HEAD
+        [HttpGet("allId")]
+        public async Task<ActionResult<IEnumerable<AuthorWithId>>> GetAllAuthorsId()
+=======
         // GET: api/authors/owntitles
         [HttpGet("owntitles")]
         public async Task<ActionResult<IEnumerable<Author>>> GetOwnTitles()
+>>>>>>> 9b13c980d206dcae08d11c794be929c2bc3ee00c
         {
             if (_context.Authors == null)
             {
                 return NotFound();
             }
+<<<<<<< HEAD
+            List<AuthorWithId> authorsIds = new List<AuthorWithId>();
+
+            var authors = await _context.Authors.ToListAsync();
+
+            foreach (var author in authors)
+            {
+                authorsIds.Add(new AuthorWithId()
+                {
+                    AuthorId = author.AuId,
+                    AuthorName = author.AuFname + " " + author.AuLname
+                });
+            }
+            return Ok(authorsIds);
+=======
             return await _context.Authors.ToListAsync();
+>>>>>>> 9b13c980d206dcae08d11c794be929c2bc3ee00c
         }
 
         // GET: api/authors/lname/{ln}

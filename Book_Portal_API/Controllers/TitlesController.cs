@@ -10,6 +10,7 @@ using Azure;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Authorization;
 using Book_Portal_API.Payloads;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Book_Portal_API.Controllers
 {
@@ -207,12 +208,12 @@ namespace Book_Portal_API.Controllers
 
         // GET: api/titles/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Title>> GetTitle(string id)
+        public async Task<ActionResult<TitleResponse>> GetTitle(string id)
         {
-          if (_context.Titles == null)
-          {
-              return NotFound();
-          }
+            if (_context.Titles == null)
+            {
+                return NotFound();
+            }
             var title = await _context.Titles.FindAsync(id);
 
             if (title == null)
@@ -220,7 +221,38 @@ namespace Book_Portal_API.Controllers
                 return NotFound();
             }
 
-            return title;
+            List<string> authorIds = new List<string>();
+            List<byte?> auords = new List<byte?>();
+            List<int?> typer = new List<int?>();
+            var titleauthors =  await _context.Titleauthors.Where(ta => ta.TitleId == title.TitleId).ToListAsync();
+            foreach( var author in titleauthors)
+            {
+                auords.Add(author.AuOrd);
+                authorIds.Add(author.AuId);
+                typer.Add(author.Royaltyper);
+            }
+
+            var pub = await _context.Publishers.FindAsync(title.PubId);
+
+            var titleRequest = new TitleResponse()
+            {
+                Title1 = title.Title1,
+                Type = title.Type,
+                PubId = title.PubId,
+                Price = title.Price,
+                Advance = title.Advance,
+                Royalty = title.Royalty,
+                YtdSales = title.YtdSales,
+                Notes = title.Notes,
+                Pubdate = title.Pubdate,
+                AuIds = authorIds.ToArray(),
+                AuOrd = auords.ToArray(),
+                Royaltyper = typer.ToArray()
+
+                
+            };
+
+            return Ok(titleRequest);
         }
 
 
