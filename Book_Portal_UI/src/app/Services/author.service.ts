@@ -6,6 +6,7 @@ import { Employee } from '../Models/employee';
 import { Store } from '../Models/stores';
 import { Title } from '../Models/title';
 import {TitleRequest} from '../Models/title-request'
+import { TitleResponse } from '../Models/title-response';
 
 @Injectable({
   providedIn: 'root'
@@ -38,10 +39,16 @@ export class AuthorService {
 
   getTitleFromId(titleId:string)
   {
-    return this.http.get<TitleRequest>(`${this.baseUrl}/titles/${titleId}`);
+    return this.http.get<TitleResponse>(`${this.baseUrl}/titles/${titleId}`);
   }
 
   getAllAuthorsIds(){
     return this.http.get<AuthorId[]>(`${this.baseUrl}/authors/allId`)
   }
+
+  updateTitleDetails(title:TitleRequest,titleId:string){
+    console.log(title);
+    return this.http.put(`${this.baseUrl}/titles/${titleId}`,title);
+  }
+
 }
