@@ -7,42 +7,38 @@
                         <h4 class="text-right">Book Title Details</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-4"><label class="labels">Title ID</label>
-                            <input type="text" class="form-control rounded" placeholder="Title ID"
-                                formControlName="titleId">
+                        <div class="col-md-8"><label class="labels">Title of Book</label><input type="text"
+                                class="form-control rounded" placeholder="Title of Book" formControlName="title1">
                         </div>
                         <div class="col-md-4"><label class="labels">Publisher ID</label><input type="text"
                                 class="form-control rounded" value="" placeholder="Publisher ID"
                                 formControlName="pubId">
                         </div>
-                        <div class="col-md-4"><label class="labels">Title of Book</label><input type="text"
-                                class="form-control rounded" placeholder="Title of Book" formControlName="title1">
-                        </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-4"><label class="labels">Price</label><input type="number"
+                    <div class="row">
+                        <div class="col-md-4 mt-2"><label class="labels">Price</label><input type="number"
                                 class="form-control rounded" placeholder="Price" formControlName="price">
                         </div>
-                        <div class="col-md-4"><label class="labels">Advance</label><input type="number"
+                        <div class="col-md-4 mt-2"><label class="labels">Advance</label><input type="number"
                                 class="form-control rounded" placeholder="Advance" formControlName="advance">
                         </div>
-                        <div class="col-md-4"><label class="labels">Date of Publish</label><input type="date"
+                        <div class="col-md-4 mt-2"><label class="labels">Date of Publish</label><input type="date"
                                 class="form-control rounded" placeholder="Date of Publish" formControlName="pubdate">
                         </div>
-                        <div class="col-md-4"><label class="labels">Royalty</label><input type="number"
+                        <div class="col-md-4 mt-2"><label class="labels">Royalty</label><input type="number"
                                 class="form-control rounded" placeholder="Royalty" formControlName="royalty">
                         </div>
-                        <div class="col-md-4"><label class="labels">Year to Date Sales</label><input type="number"
+                        <div class="col-md-4 mt-2"><label class="labels">Year to Date Sales</label><input type="number"
                                 class="form-control rounded" placeholder="Year to Date Sales"
                                 formControlName="ytdSales">
                         </div>
-                        <div class="col-md-4"><label class="labels">Type of Book</label><input type="text"
+                        <div class="col-md-4 mt-2"><label class="labels">Type of Book</label><input type="text"
                                 class="form-control rounded" placeholder="Type of Book" formControlName="type">
                         </div>
-                        <div class="col-md-4"><label class="labels">Royal Typer</label><input type="number"
+                        <div class="col-md-4 mt-2"><label class="labels">Royal Typer</label><input type="number"
                                 class="form-control rounded" placeholder="Type of Book" formControlName="royaltyper">
                         </div>
-                        <div class="col-md-4"><label class="labels">Number of Authors </label><input type="number"
+                        <div class="col-md-4 mt-2"><label class="labels">Number of Authors </label><input type="number"
                                 class="form-control rounded" placeholder="Type of Book" formControlName="auOrd">
                         </div>
                         <!-- <div class="col-md-4">
@@ -50,13 +46,14 @@
                             <input type="number" class="form-control rounded" placeholder="Author Ord"
                                 formControlName="auOrd">
                         </div> -->
-                        <div class="col-md-8">
+                        <div class="col-md-8 mt-2">
                             <label class="labels" for="auIds">Authors ID</label>
                             <select id="auIds" class="form-control rounded" size="3" multiple formControlName="auIds">
-                                <option *ngFor="let author of authorIds" [value]="author.authorId" >{{author.authorName + '---' + author.authorId}}</option>
+                                <option *ngFor="let author of authorIds" [value]="author.authorId">{{author.authorName +
+                                    '---' + author.authorId}}</option>
                             </select>
                         </div>
-                        
+
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-12">

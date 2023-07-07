@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.jwtService.getUser().subscribe(val => {
       let u = this.authService.getUserFromToken();
+      console.log(u);
+      console.log(val);
       this.user = u || val;
     });
 

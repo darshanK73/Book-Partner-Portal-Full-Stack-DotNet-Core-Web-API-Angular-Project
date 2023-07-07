@@ -20,6 +20,10 @@ export class JwtService {
     this.role$.next(role);
   }
 
+  public removeRole(){
+    this.role$ = new BehaviorSubject<string>("");
+  }
+
   public setUserId(user:string)
   {
     let u= JSON.parse(user);
@@ -31,6 +35,11 @@ export class JwtService {
   {
     return this.userId$.asObservable();
   }
+
+  public removeUserId(){
+    this.userId$ = new BehaviorSubject<string>("");
+  }
+
   public getEmail(){
     return this.email$.asObservable();
   }
@@ -39,11 +48,19 @@ export class JwtService {
     this.email$.next(email);
   }
 
+  public removeEmail(){
+    this.email$ = new BehaviorSubject<string>("");
+  }
+
   public getUser(){
     return this.user$.asObservable();
   }
 
   public setUser(user:string){
     this.user$.next(JSON.parse(user));
+  }
+
+  public removeUser(){
+    this.user$ = new BehaviorSubject<any>({});
   }
 }

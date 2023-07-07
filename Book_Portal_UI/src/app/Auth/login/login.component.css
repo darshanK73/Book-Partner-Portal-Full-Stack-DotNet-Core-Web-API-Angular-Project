@@ -32,6 +32,35 @@
     /* Adjust the font size as desired */
 }
 
+.form-content .input-box .inputbox:focus {
+    /* Styles for input box when focused */
+    outline: none;
+    border-color: rgba(55, 80, 235, 255);
+    box-shadow: 0 0 0 2px rgba(55, 80, 235, 0.2);
+}
+
+.input-boxes .input-box .inputbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    margin: 1px;
+    position: relative;
+    background: rgba(237, 240, 245, 255);
+    border-radius: 10px;
+    /* padding: 5px 10px; */
+    color: gray;
+    border: none;
+    outline: none;
+}
+
+#password:focus {
+    /* Styles for input box when focused */
+    outline: none;
+    border-color: none;
+    box-shadow: none;
+}
+
 .container {
     position: relative;
     max-width: 800px;

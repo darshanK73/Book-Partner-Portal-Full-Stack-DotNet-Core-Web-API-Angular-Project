@@ -255,6 +255,10 @@ nav .profile-details .admin_name {
   white-space: nowrap;
 }
 
+a{
+  cursor: pointer;
+}
+
 nav .profile-details i {
   font-size: 25px;
   color: #ffff;

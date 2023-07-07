@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit{
     })
 
     console.log(this.env);
+    console.log(this.jwtService.getUser());
   }
 
   onSubmit(){
@@ -64,6 +65,21 @@ export class LoginComponent implements OnInit{
         this.validateFormField(control);
       }
     })
+  }
+
+  togglePasswordVisibility() {
+    const passwordInput = document.getElementById("password") as HTMLInputElement;
+    const eyeIcon = document.querySelector(".toggle-password") as HTMLElement;
+  
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.remove("bi-eye-slash-fill");
+      eyeIcon.classList.add("bi-eye-fill");
+    } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.remove("bi-eye-fill");
+      eyeIcon.classList.add("bi-eye-slash-fill");
+    }
   }
 
 }

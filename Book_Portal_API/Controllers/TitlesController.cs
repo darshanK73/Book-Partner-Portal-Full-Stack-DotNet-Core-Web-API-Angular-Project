@@ -27,7 +27,7 @@ namespace Book_Portal_API.Controllers
 
         // POST: api/titles
         [HttpPost]
-        public async Task<ActionResult<string>> PostTitle(TitlePublishRequest titleRequest)
+        public async Task<ActionResult<MessageResponse>> PostTitle(TitlePublishRequest titleRequest)
         {
             if(titleRequest == null)
             {
@@ -82,7 +82,7 @@ namespace Book_Portal_API.Controllers
             await _context.Titles.AddAsync(title);
             await _context.SaveChangesAsync();
 
-            return Ok(new { Message = "Recoard Created Successfully" });
+            return Ok(new MessageResponse(){ Message = "Recoard Created Successfully" });
         }
 
         // GET: api/titles
@@ -201,12 +201,15 @@ namespace Book_Portal_API.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors.Where(a => a.AuId == authorId).FirstOrDefaultAsync();
+            var authortitles = await _context.Titleauthors.Where(at => at.AuId == authorId).ToListAsync();
+            
+            var titles = new List<Title>();
 
-            var authortitle = await _context.Titleauthors.Where(at => at.Au == author).FirstOrDefaultAsync();
-
-            var titles = await _context.Titles.Where(t => t.TitleId == authortitle.TitleId).ToListAsync();
-
+            foreach(var authortitle in authortitles)
+            {
+                var title = await _context.Titles.Where(a => a.TitleId == authortitle.TitleId).FirstOrDefaultAsync();
+                titles.Add(title);
+            }
             if (titles == null)
             {
                 return NotFound();
@@ -302,7 +305,7 @@ namespace Book_Portal_API.Controllers
 
         // PUT: api/titles/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTitle(string id, TitleUpdateRequest titleRequest)
+        public async Task<ActionResult<MessageResponse>> PutTitle(string id, TitleUpdateRequest titleRequest)
         {
             if (titleRequest == null)
             {
@@ -376,7 +379,7 @@ namespace Book_Portal_API.Controllers
             }
 
            
-            return Ok(new { Message = "Recoard Created Successfully" });
+            return Ok(new MessageResponse(){ Message = "Recoard Created Successfully" });
         }
 
         // DELETE: api/titles/{id}
@@ -407,7 +410,7 @@ namespace Book_Portal_API.Controllers
         private string CreateTitleId(string type)
         {
             Random rd = new Random();
-            return type.Substring(0,2) +  rd.Next(1000, 9999).ToString();
+            return type.Substring(0,2).ToUpper() +  rd.Next(1000, 9999).ToString();
         }
     }
 }

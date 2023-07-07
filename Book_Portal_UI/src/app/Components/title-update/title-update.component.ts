@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthorId } from 'src/app/Models/author-id';
-import { TitleRequest } from 'src/app/Models/title-request';
+import { TitleUpdateRequest } from 'src/app/Models/title-update-request';
 import { TitleResponse } from 'src/app/Models/title-response';
 import { AuthService } from 'src/app/Services/auth.service';
 import { AuthorService } from 'src/app/Services/author.service';
@@ -23,7 +24,7 @@ export class TitleUpdateComponent implements OnInit {
   authorIds: AuthorId[] = [];
   flagValue = true;
 
-  constructor(private autherService: AuthorService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
+  constructor(private autherService: AuthorService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute,private toast:NgToastService) {
    
   }
   ngOnInit(): void {
@@ -85,10 +86,7 @@ export class TitleUpdateComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("hello");
-    console.log(this.titleUpdateForm);
-
-    let titleRequest = new TitleRequest();
+    let titleRequest = new TitleUpdateRequest();
     titleRequest.title1 = this.titleUpdateForm.value.title1;
     titleRequest.price = this.titleUpdateForm.value.price
     titleRequest.advance = this.titleUpdateForm.value.advance
@@ -100,9 +98,9 @@ export class TitleUpdateComponent implements OnInit {
 
   
      this.autherService.updateTitleDetails(titleRequest,this.titleId).subscribe({next:(res)=>{
-      console.log(res);
+      this.toast.success({detail:'Success',summary:res.message,duration:5000});
      },error:(err)=>{
-      console.log(err);
+      this.toast.error({detail:'Error',summary:err.error.message,duration:5000});
      }})
     
   }

@@ -35,7 +35,10 @@
                             </div>
                             <div class="mb-2 input-box">
                                 <label for="password">Password</label>
-                                <input type="password" formControlName="password" id="password" required>
+                                <div class="inputbox">
+                                    <input type="password" formControlName="password" id="password" required>
+                                    <i class="bi bi-eye-slash-fill toggle-password" (click)="togglePasswordVisibility()"></i>
+                                </div>
                                 <small
                                     *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">*Password
                                     is required</small>

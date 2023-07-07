@@ -32,9 +32,9 @@ body {
 .custom-column {
     background-color: #edf0f5;
     border-right: none;
-    height:480px;
+    /* height:480px; */
     padding-left: 0px;
-    margin-left: -4px;
+    /* margin-left: -4px; */
     border-radius: 20px 0px 0px 20px;
   }
 
@@ -45,8 +45,8 @@ body {
 
 .custom-rounded {
   border-radius: 20px;
-  height: 480px;
-  width:900px;
+  /* height: 480px;
+  width:900px; */
   box-shadow: 3px 3px 30px 2px rgba(20, 20, 20, 0.4);
 }
 .labels {
@@ -64,6 +64,7 @@ body {
   background: #5066e1;
   box-shadow: none;
   border: none;
+  margin-bottom: -20px;
 }
 .form-control.additional-information {
   height: 60px;
@@ -73,29 +74,33 @@ body {
     color: gray;
     opacity: 60%;
   }
-  h4{
-    margin-left: 160px;
-    /* margin-top: -10px ; */
-  }
+
   .form-control {
     border-radius: 10px !important;
     background-color: #edf0f5;
     border: none;
     outline: none;
+    margin-bottom: 0px;
   }
   .profile-button {
     background: #5066e1;
     box-shadow: none;
     border: none;
-    margin-top: 10px; /* Adjust the margin as desired */
+    margin-top: 15px; /* Adjust the margin as desired */
     position: relative;
-    /* margin-left: -30px; */
+    /* margin-left: -20px;  */
     /* top: -35px; Adjust the position as desired */
     border-radius: 15px;
-    width: 200px;
+    width: 150px;
+    font-size: 13px;
   }
 .profile-button:hover {
   background: #6477e2;
+}
+.additional-information {
+  font-size: 12px;
+  font-size: 12px !important;
+  color: grey;
 }
 
 .profile-button:focus {

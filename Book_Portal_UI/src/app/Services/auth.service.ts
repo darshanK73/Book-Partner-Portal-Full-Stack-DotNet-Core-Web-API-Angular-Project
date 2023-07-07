@@ -6,10 +6,11 @@ import { AuthorRegisterRequest } from '../Models/author-register-request';
 import { LoginRequest } from '../Models/login-request';
 import { LoginResponse } from '../Models/login-response';
 import { PublisherRegisterRequest } from '../Models/publisher-register-request';
-import { RegisterResponse } from '../Models/register-response';
+import { MessageResponse } from '../Models/message-response';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgToastService } from 'ng-angular-popup';
 import { environment } from 'src/environments/environment';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
 
   private userPayload:any;
 
-  constructor(private http:HttpClient,private router:Router,private toast:NgToastService) { 
+  constructor(private http:HttpClient,private router:Router,private toast:NgToastService,private jwtService:JwtService) { 
     this.userPayload = this.decodedToken();
   }
 
@@ -29,11 +30,11 @@ export class AuthService {
   }
 
   signupAuthor(request : AuthorRegisterRequest){
-    return this.http.post<RegisterResponse>(`${this.baseUrl}/auth/author/register`,request)
+    return this.http.post<MessageResponse>(`${this.baseUrl}/auth/author/register`,request)
   }
 
   signupPublisher(request: FormData){
-    return this.http.post<RegisterResponse>(`${this.baseUrl}/auth/publisher/register`,request);
+    return this.http.post<MessageResponse>(`${this.baseUrl}/auth/publisher/register`,request);
   }
 
   // public uplodeFile(file:File,pubId:string) {
@@ -59,6 +60,10 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("token");
+    this.jwtService.removeEmail();
+    this.jwtService.removeRole();
+    this.jwtService.removeUser();
+    this.jwtService.removeUserId();
     this.toast.success({detail:"Success",summary:"Log out successfully!",duration:5000});
     this.router.navigate(["login"]);
   }
