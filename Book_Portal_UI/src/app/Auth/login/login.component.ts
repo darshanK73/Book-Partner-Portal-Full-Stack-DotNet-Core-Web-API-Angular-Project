@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit{
           this.jwtService.setEmail(payload.email);
           this.jwtService.setRole(payload.role);
           this.jwtService.setUser(payload.JSON);
+          this.jwtService.setUserId(payload.JSON);
           this.loginForm.reset();
           this.router.navigate(["dashboard"])
         },

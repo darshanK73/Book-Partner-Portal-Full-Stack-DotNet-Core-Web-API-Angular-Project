@@ -21,6 +21,11 @@ export class AuthorService {
     return this.http.get<Title[]>(`${this.baseUrl}/titles`);
   }
 
+  getAllOwnTitles(authorId:string)
+  {
+    return this.http.get<Title[]>(`${this.baseUrl}/titles/authorId/${authorId}`)
+  }
+
   getAllAuthors(){
     return this.http.get<Author[]>(`${this.baseUrl}/authors`);
   }
@@ -29,8 +34,8 @@ export class AuthorService {
     return this.http.get<Employee[]>(`${this.baseUrl}/employees`);
   }
 
-  getAllStores() {
-    return this.http.get<Store[]>(`${this.baseUrl}/stores`);
+  getAllStoresSellingTitle(titles:string[]) {
+    return this.http.post<Store[]>(`${this.baseUrl}/stores/titlesIds`,titles);
   }
 
   postPublishTitles(title:TitleRequest) {

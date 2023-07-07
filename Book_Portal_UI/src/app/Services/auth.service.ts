@@ -91,5 +91,12 @@ export class AuthService {
       return JSON.parse(this.userPayload.JSON);
     }
   }
+
+  getUserIdFromToken(){
+    if(this.userPayload){
+      console.log(JSON.parse(this.userPayload.JSON));
+      return JSON.parse(this.userPayload.JSON).AuId;
+    }
+  }
 }
 

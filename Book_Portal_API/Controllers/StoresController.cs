@@ -47,7 +47,6 @@ namespace Book_Portal_API.Controllers
             return Ok("Record Created Successfully");
         }
 
-        [Authorize]
         // GET: api/stores
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Store>>> GetStores()
@@ -57,6 +56,31 @@ namespace Book_Portal_API.Controllers
               return NotFound();
           }
             return await _context.Stores.ToListAsync();
+        }
+
+        // GET: api/stores
+        [HttpPost("titlesIds")]
+        public async Task<ActionResult<IEnumerable<Store>>> GetStoresSellingTitle(string[] titlesIds)
+        {
+            if (_context.Stores == null)
+            {
+                return NotFound();
+            }
+
+            var sales = await _context.Sales.Where(sa => titlesIds.Contains(sa.TitleId)).ToListAsync();
+
+            List<Store> stores = new List<Store>();
+
+            foreach(var s in sales)
+            {
+                var st = await _context.Stores.Where(st => st.StorId == s.StorId).FirstOrDefaultAsync();
+                if (!stores.Contains(st))
+                {
+                    stores.Add(st);
+                }
+            }
+
+            return Ok(stores);
         }
 
         // GET : api/stores/name/{name}

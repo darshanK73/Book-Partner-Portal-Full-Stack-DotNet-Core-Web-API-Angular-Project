@@ -13,15 +13,27 @@ import { JwtService } from 'src/app/Services/jwt.service';
 export class OwntitlesComponent implements OnInit{
 
   titles: Title[] = []
+  authorId!:string;
   constructor(private titleService:AuthorService,private jwtService:JwtService,private authService:AuthService,private router:Router,private route:ActivatedRoute){}
 
   ngOnInit(): void {
-    this.titleService.getAllTitles().subscribe({next:(res)=> {
-      this.titles = res;
-      console.log(this.titles);
-    },error:(err)=>{
-      console.log(err);
-    }});
+
+    this.jwtService.getUserId().subscribe(val => {
+      let u = this.authService.getUserIdFromToken();
+      console.log(u);
+      // console.log(u);
+      this.authorId = u || val;
+
+      this.titleService.getAllOwnTitles(this.authorId).subscribe({next:(res)=> {
+        this.titles = res;
+        console.log(this.titles);
+      },error:(err)=>{
+        console.log(err);
+      }});
+
+    });
+
+    
   }
 
   updateTitle(title:Title)

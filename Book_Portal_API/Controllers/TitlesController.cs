@@ -192,6 +192,30 @@ namespace Book_Portal_API.Controllers
         }
 
 
+        // GET: api/titles/authorname/{authorId}
+        [HttpGet("authorId/{authorId}")]
+        public async Task<ActionResult<IEnumerable<Title>>> GetTitleByAuthorId(string authorId)
+        {
+            if (_context.Titles == null)
+            {
+                return NotFound();
+            }
+
+            var author = await _context.Authors.Where(a => a.AuId == authorId).FirstOrDefaultAsync();
+
+            var authortitle = await _context.Titleauthors.Where(at => at.Au == author).FirstOrDefaultAsync();
+
+            var titles = await _context.Titles.Where(t => t.TitleId == authortitle.TitleId).ToListAsync();
+
+            if (titles == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(titles);
+        }
+
+
         // GET: api/titles/top5titles
         [HttpGet("top5titles")]
         public async Task<ActionResult<IEnumerable<Title>>> GetTop5Titles()

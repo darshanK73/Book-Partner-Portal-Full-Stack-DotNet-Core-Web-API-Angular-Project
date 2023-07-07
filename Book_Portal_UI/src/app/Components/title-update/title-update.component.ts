@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorId } from 'src/app/Models/author-id';
@@ -21,6 +21,7 @@ export class TitleUpdateComponent implements OnInit {
   originalTitle: TitleResponse = new TitleResponse();
   titleId!: string;
   authorIds: AuthorId[] = [];
+  flagValue = true;
 
   constructor(private autherService: AuthorService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
    
@@ -67,19 +68,19 @@ export class TitleUpdateComponent implements OnInit {
     })
 
     this.titleUpdateForm = this.fb.group({
-      titleId: ['', Validators.required],
-      pubId: ['', Validators.required],
-      title1: ['', Validators.required],
-      price: ['', Validators.required],
-      advance: ['', Validators.required],
-      pubdate: ['', Validators.required],
-      royalty: ['', Validators.required],
-      ytdSales: ['', Validators.required],
-      type: ['', Validators.required],
-      royaltyper: ['', Validators.required],
-      auOrd: ['', Validators.required],
-      auIds: ['', Validators.required],
-      notes: ['', Validators.required]
+      titleId: new FormControl({value:'',disabled:true},Validators.required),
+      pubId: new FormControl({value:'',disabled:true},Validators.required),
+      title1: new FormControl({value:'',disabled:false},Validators.required),
+      price: new FormControl({value:'',disabled:false},Validators.required),
+      advance: new FormControl({value:'',disabled:false},Validators.required),
+      pubdate: new FormControl({value:'',disabled:true},Validators.required),
+      royalty: new FormControl({value:'',disabled:false},Validators.required),
+      ytdSales: new FormControl({value:'',disabled:false},Validators.required),
+      type: new FormControl({value:'',disabled:false},Validators.required),
+      royaltyper: new FormControl({value:'',disabled:false},Validators.required),
+      auOrd: new FormControl({value:'',disabled:true},Validators.required),
+      auIds: new FormControl({value:'',disabled:true},Validators.required),
+      notes: new FormControl({value:'',disabled:false},Validators.required),
     });
   }
 

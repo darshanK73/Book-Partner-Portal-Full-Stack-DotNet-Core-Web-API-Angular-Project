@@ -9,7 +9,7 @@
                     <div class="row mt-2">
                         <div class="col-md-4"><label class="labels">Title ID</label>
                             <input type="text" class="form-control rounded" placeholder="Title ID"
-                                formControlName="titleId">
+                                formControlName="titleId" >
                         </div>
                         <div class="col-md-4"><label class="labels">Publisher ID</label><input type="text"
                                 class="form-control rounded" value="" placeholder="Publisher ID"
@@ -52,7 +52,7 @@
                         </div> -->
                         <div class="col-md-8">
                             <label class="labels" for="auIds">Authors ID</label>
-                            <select id="auIds" class="form-control rounded" size="3" multiple formControlName="auIds">
+                            <select id="auIds" class="form-control rounded" size="3" multiple formControlName="auIds" >
                                 <option *ngFor="let author of authorIds" [value]="author.authorId" >{{author.authorName + '---' + author.authorId}}</option>
                             </select>
                         </div>

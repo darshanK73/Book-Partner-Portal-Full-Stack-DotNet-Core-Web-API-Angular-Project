@@ -14,3 +14,13 @@
     border-radius: 20px;
     overflow: hidden;
 }
+
+button{
+    background-color: #5066e1;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 0.5rem 0.6rem;
+    border-radius: 10px;
+    font-size: 10px !important;
+}

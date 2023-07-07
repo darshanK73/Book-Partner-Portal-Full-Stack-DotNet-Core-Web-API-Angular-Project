@@ -4,7 +4,6 @@
       <thead>
         <tr>
           <th scope="col">User Name</th>
-          <th scope="col">Password</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Publisher Id</th>
@@ -17,7 +16,6 @@
       <tbody>
         <tr *ngFor="let publisher of publishers">
           <th scope="row">{{publisher.username}}</th>
-          <td scoped="row">{{publisher.password}}</td>
           <td scoped="row">{{publisher.email}}</td>
           <td scoped="row">{{publisher.role}}</td>
           <td scoped="row">{{publisher.pubId}}</td>
