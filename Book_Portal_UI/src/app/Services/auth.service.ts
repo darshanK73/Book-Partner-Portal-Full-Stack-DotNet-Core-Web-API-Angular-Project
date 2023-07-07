@@ -9,13 +9,15 @@ import { PublisherRegisterRequest } from '../Models/publisher-register-request';
 import { RegisterResponse } from '../Models/register-response';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgToastService } from 'ng-angular-popup';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl:string = "https://localhost:7022/api/auth";
+  private baseUrl = environment.baseUrl;
+
   private userPayload:any;
 
   constructor(private http:HttpClient,private router:Router,private toast:NgToastService) { 
@@ -23,15 +25,15 @@ export class AuthService {
   }
 
   login(request : LoginRequest) : Observable<LoginResponse>{
-    return this.http.post<LoginResponse>(`${this.baseUrl}/login`,request);
+    return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`,request);
   }
 
   signupAuthor(request : AuthorRegisterRequest){
-    return this.http.post<RegisterResponse>(`${this.baseUrl}/author/register`,request)
+    return this.http.post<RegisterResponse>(`${this.baseUrl}/auth/author/register`,request)
   }
 
   signupPublisher(request: FormData){
-    return this.http.post<RegisterResponse>(`${this.baseUrl}/publisher/register`,request);
+    return this.http.post<RegisterResponse>(`${this.baseUrl}/auth/publisher/register`,request);
   }
 
   // public uplodeFile(file:File,pubId:string) {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/Services/auth.service';
 import { JwtService } from 'src/app/Services/jwt.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,9 @@ export class LoginComponent implements OnInit{
 
   loginForm! : FormGroup;
 
+  env = environment.baseUrl;
+  
+
   constructor(private fb:FormBuilder,private authService:AuthService, private router:Router, private toast:NgToastService, private jwtService:JwtService){}
 
   ngOnInit(): void {
@@ -22,6 +26,8 @@ export class LoginComponent implements OnInit{
       username:['',Validators.required],
       password:['',Validators.required]
     })
+
+    console.log(this.env);
   }
 
   onSubmit(){

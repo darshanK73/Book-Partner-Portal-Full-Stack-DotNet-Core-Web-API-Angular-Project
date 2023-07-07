@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Author } from '../Models/author';
 import { AuthorId } from '../Models/author-id';
 import { Employee } from '../Models/employee';
@@ -13,7 +14,8 @@ import { TitleResponse } from '../Models/title-response';
 })
 export class AuthorService {
 
-  baseUrl:string = "https://localhost:7022/api";
+  private baseUrl = environment.baseUrl;
+
   constructor(private http:HttpClient) { }
 
   getAllTitles()
