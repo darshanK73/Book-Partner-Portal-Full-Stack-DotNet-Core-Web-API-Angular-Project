@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/5b647109-d546-4aa5-aeb5-c95d37cabccf/resourceGroups/BookPortalResourceGroup/providers/Microsoft.Web/sites/BookPortalUI",
-    "appService.deploySubpath": "Book_Portal_UI\\dist\\book-portal-ui"
-}
