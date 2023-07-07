@@ -6,6 +6,5 @@ export class TitleRequest {
   royalty! : number;
   ytdSales! : number;
   notes! : string;
-  auOrd!: number;
   royaltyper!:string; 
 }
