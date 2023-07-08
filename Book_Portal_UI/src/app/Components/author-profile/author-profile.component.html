@@ -7,7 +7,8 @@
                         <img class="rounded-circle" style="margin-top: 25px;" width="250px"
                             src="../../../assets/img/Shweta.png">
                         <span class="font-weight-bold" style="margin-top: -20px;">Author</span>
-                        <span class="text-black-50">Author07@gmail.com</span>
+                        <span class="">{{authorId}}</span>
+                        <span class="text-black-50">{{author.AuFname +' '+ author.AuLname | titlecase}}</span>
                     </div>
                 </div>
                 <div class="col-sm-7 col-md-8 d-flex flex-column justify-content-center">
@@ -15,56 +16,62 @@
                         <div class="">
                             <h4 class="text-center">Edit Your Profile</h4>
                         </div>
-                        <form style="margin-top: -12px;">
+                        <form style="margin-top: -12px;" [formGroup]=" authorUpdateForm">
                             <div class="row ">
 
                                 <div class="col-md-4">
-                                    <label class="labels no-right-margin">Name</label>
+                                    <label class="labels no-right-margin">First Name</label>
                                     <input type="text" class="form-control rounded no-right-margin"
-                                        placeholder="First Name" tabindex="1" value="">
+                                        placeholder="First Name" tabindex="1" name="firstName" formControlName="firstName">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="labels no-right-margin">Last Name</label>
-                                    <input type="text" class="form-control rounded no-right-margin" value=""
-                                    tabindex="2" placeholder="Last Name">
+                                    <input type="text" class="form-control rounded no-right-margin"
+                                    tabindex="2" placeholder="Last Name" name="lastName" formControlName="lastName">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="labels no-right-margin">Mobile Number</label>
                                     <input type="text" class="form-control rounded no-right-margin"
-                                        placeholder="Enter Phone number" tabindex="3" value="">
+                                        placeholder="Enter Phone number" tabindex="3" name="phone" formControlName="phone">
                                 </div>
 
-                                <div class="col-12">
-                                    <label class="labels">Password</label>
+                                <div class="col-6">
+                                    <label class="labels">Username</label>
                                     <input type="text" class="form-control rounded" placeholder="Enter Your password" tabindex="4"
-                                        value="">
+                                        name="username" formControlName="username">
                                 </div>
+                                <div class="col-6">
+                                    <label class="labels">Password</label>
+                                    <input type="text" class="form-control rounded" placeholder="Enter Your password" tabindex="5"
+                                        name="password" formControlName="password">
+                                </div>
+                                
                                 <div class="col-12">
                                     <label class="labels">Email ID</label>
                                     <input type="text" class="form-control rounded" tabindex="5" placeholder="Update Email Address"
-                                        value="">
+                                        name="email" formControlName="email">
                                 </div>
                                 <div class="col-12">
                                     <label class="labels">Address</label>
                                     <input type="text" class="form-control rounded" tabindex="6" placeholder="Update Your Address"
-                                        value="">
+                                        name="address" formControlName="address">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="labels">City</label>
                                     <input type="text" class="form-control rounded" tabindex="7" placeholder="Enter your City"
-                                        value="">
+                                        name="city" formControlName="city">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="labels">State</label>
                                     <input type="text" class="form-control rounded" tabindex="8" placeholder="Enter your State"
-                                        value="">
+                                        name="state" formControlName="state">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="labels">Zip</label>
-                                    <input type="text" class="form-control rounded" tabindex="9" placeholder="Zip Code" value="">
+                                    <input type="text" class="form-control rounded" tabindex="9" placeholder="Zip Code" name="zip" formControlName="zip">
                                 </div>
                                 <div class="mt-4 text-center"><button class="btn btn-primary profile-button" tabindex="10"
-                                        type="button">Save
+                                        type="button" (click)="onSubmit()">Save
                                         Profile</button>
                                 </div>
                             </div>

@@ -63,7 +63,7 @@ namespace Book_Portal_API.Controllers
         }
 
         [HttpPost("author/register")]
-        public async Task<ActionResult<RegisterResponse>> RegisterAuthor([FromBody] AuthorRegisterationRequest request)
+        public async Task<ActionResult<MessageResponse>> RegisterAuthor([FromBody] AuthorRegisterationRequest request)
         {
             if (request == null)
             {
@@ -103,7 +103,7 @@ namespace Book_Portal_API.Controllers
 
 
         [HttpPost("publisher/register")]
-        public async Task<ActionResult<RegisterResponse>> RegisterPublisher([FromForm] PublisherRegisterRequest request)
+        public async Task<ActionResult<MessageResponse>> RegisterPublisher([FromForm] PublisherRegisterRequest request)
         {
             if (request == null)
             {
@@ -151,6 +151,120 @@ namespace Book_Portal_API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new RegisterResponse() { Message = "User Registered Successfully"});
+        }
+
+
+        [HttpPut("author/update/{id}")]
+        public async Task<ActionResult<MessageResponse>> UpdateAuthor(string id, [FromBody] AuthorUpdateRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest();
+            }
+
+            var author = await _context.Authors.FindAsync(id);
+
+            if(author == null)
+            {
+                return BadRequest();
+            }
+
+            author.Username = request.Username;
+            author.Password = PasswordHelper.Encode(request.Password);
+            author.Email = request.Email;
+            author.AuFname = request.AuFname;
+            author.AuLname = request.AuLname;
+            author.Phone = request.Phone;
+            author.Address = request.Address;
+            author.City = request.City;
+            author.State = request.State;
+            author.Zip = request.Zip;
+
+            _context.Entry(author).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AuthorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+
+            return Ok(new MessageResponse() { Message = "Recoard Updated Successfully" });
+        }
+
+
+        [HttpPut("publisher/update/{id}")]
+        public async Task<ActionResult<MessageResponse>> UpdatePublisher(string id, [FromForm] PublisherUpdateRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest();
+            }
+
+            var publisher = await _context.Publishers.FindAsync(id);
+
+            if (publisher == null)
+            {
+                return BadRequest();
+            }
+
+            await using var memoryStream = new MemoryStream();
+            await request.Logo.CopyToAsync(memoryStream);
+            byte[] arr = memoryStream.ToArray();
+
+
+
+            publisher.Username = request.Username;
+            publisher.Password = PasswordHelper.Encode(request.Password);
+            publisher.Email = request.Email;
+            publisher.PubName = request.PubName;
+            publisher.City = request.City;
+            publisher.State = request.State;
+            publisher.Country = request.Country;
+
+            var pubinfo = await _context.PubInfos.FindAsync(id);
+
+            if(pubinfo == null)
+            {
+                return BadRequest();
+            }
+
+            pubinfo.Logo = arr;
+            pubinfo.PrInfo = request.PrInfo;
+
+            _context.Entry(pubinfo).State = EntityState.Modified;
+          
+
+            _context.Entry(publisher).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AuthorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+
+            return Ok(new MessageResponse() { Message = "Recoard Updated Successfully" });
         }
 
 
@@ -209,6 +323,16 @@ namespace Book_Portal_API.Controllers
             Random rd = new Random();
             string id = rd.Next(1000, 9999).ToString();
             return id;
+        }
+
+        private bool AuthorExists(string id)
+        {
+            return (_context.Authors?.Any(e => e.AuId == id)).GetValueOrDefault();
+        }
+
+        private bool PublisherExists(string id)
+        {
+            return (_context.Publishers?.Any(e => e.PubId == id)).GetValueOrDefault();
         }
     }
 }

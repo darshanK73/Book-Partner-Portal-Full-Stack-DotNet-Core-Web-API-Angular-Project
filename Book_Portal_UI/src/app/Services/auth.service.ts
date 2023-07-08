@@ -33,28 +33,23 @@ export class AuthService {
     return this.http.post<MessageResponse>(`${this.baseUrl}/auth/author/register`,request)
   }
 
+  updateAuthor(id:string,request : AuthorRegisterRequest){
+    return this.http.put<MessageResponse>(`${this.baseUrl}/auth/author/update/${id}`,request);
+  }
+
   signupPublisher(request: FormData){
     return this.http.post<MessageResponse>(`${this.baseUrl}/auth/publisher/register`,request);
   }
 
-  // public uplodeFile(file:File,pubId:string) {
-  //   const headers = new HttpHeaders()
-  //     .append('Content-Type', 'multipart/form-data');
-
-  //     console.log("INside upload file");
-  //     const formData: FormData = new FormData();
-  //     formData.append('file',file);
-  //     formData.append('PubId',pubId);
-  //     formData.append('FileName',file.name);
-
-  //   console.log("INside upload file");
-  //   console.log(formData);
-
-  //   return this.http.post(`${this.baseUrl}/UploadFile`,formData, { headers, observe: 'response' });
-  // }
+  updatePublisher(id:string,request : FormData){
+    console.log(id);
+    console.log(request);
+    return this.http.put<MessageResponse>(`${this.baseUrl}/auth/publisher/update/${id}`,request);
+  }
 
   storeToken(token:string)
   {
+    localStorage.removeItem("token");
     localStorage.setItem("token",token);
   }
 
@@ -84,26 +79,25 @@ export class AuthService {
   }
 
   getRoleFromToken(){
-    if(this.userPayload)
+    this.userPayload = this.decodedToken();
       return this.userPayload.role;
   }
 
   getEmailFromToken(){
-    if(this.userPayload)
+    this.userPayload = this.decodedToken();
       return this.userPayload.email;
   }
 
   getUserFromToken(){
-    if(this.userPayload){
+    this.userPayload = this.decodedToken();
       return JSON.parse(this.userPayload.JSON);
-    }
   }
 
   getUserIdFromToken(){
-    if(this.userPayload){
+    this.userPayload = this.decodedToken();
       console.log(JSON.parse(this.userPayload.JSON));
       return JSON.parse(this.userPayload.JSON).AuId;
-    }
+    
   }
 }
 

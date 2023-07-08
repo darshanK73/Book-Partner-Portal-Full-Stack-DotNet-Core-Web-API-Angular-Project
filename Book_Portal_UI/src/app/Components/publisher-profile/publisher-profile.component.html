@@ -8,7 +8,8 @@
                         <img class="rounded-circle" style="margin-top: 25px;" width="250px"
                             src="../../../assets/img/ramesh.png">
                         <span class="font-weight-bold" style="margin-top: -20px;">Publisher</span>
-                        <span class="text-black-50">Publisher07@gmail.com</span>
+                        <span class="">{{publisherId}}</span>
+                        <span class="text-black-50">{{publisher.PubName | titlecase}}</span>
                     </div>
                 </div>
                 <div class="col-sm-7 col-md-8 d-flex flex-column justify-content-center">
@@ -16,57 +17,70 @@
                         <div class="">
                             <h4 class="text-center mt-3">Edit Your Profile</h4>
                         </div>
-                        <form style="margin-top: -20px;">
+                        <form style="margin-top: -20px;" [formGroup]="publisherUpdateForm">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="labels">Name</label>
-                                    <input type="text" class="form-control rounded" placeholder="First Name" tabindex="1" value="">
+                                    <label class="labels">Publication Name</label>
+                                    <input type="text" class="form-control rounded" placeholder="First Name"
+                                        tabindex="1" formControlName="pubName">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="labels">Last name</label>
-                                    <input type="text" class="form-control rounded" value="" tabindex="2" placeholder="Last Name">
+                                    <label class="labels">Username</label>
+                                    <input type="text" class="form-control rounded" tabindex="4"
+                                        placeholder="Enter new password" formControlName="username">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="labels">Mobile Number</label>
-                                    <input type="text" class="form-control rounded"  tabindex="3" placeholder="Enter Phone number"
-                                        value="">
+                                    <label class="labels">Password</label>
+                                    <input type="text" class="form-control rounded" tabindex="4"
+                                        placeholder="Enter new password" formControlName="password">
                                 </div>
                             </div>
                             <div class="row mt-1">
                                 <div class="col-md-12">
-                                    <label class="labels">Password</label>
-                                    <input type="text" class="form-control rounded" tabindex="4" placeholder="Enter new password"
-                                        value="">
                                     <div class="col-md-12">
                                         <label class="labels">Email ID</label>
                                         <input type="text" class="form-control rounded" tabindex="5"
-                                            placeholder="Update Email Address" value="">
+                                            placeholder="Update Email Address" formControlName="email">
                                     </div>
                                     <div class="row mt-1">
                                         <div class="col-md-4">
                                             <label class="labels">City</label>
-                                            <input type="text" class="form-control rounded" tabindex="6" placeholder="Enter your City" value="">
+                                            <input type="text" class="form-control rounded" tabindex="6"
+                                                placeholder="Enter your City" formControlName="city">
                                         </div>
                                         <div class="col-md-4">
                                             <label class="labels">State</label>
-                                            <input type="text" class="form-control rounded" tabindex="7" placeholder="Enter your State" value="">
+                                            <input type="text" class="form-control rounded" tabindex="7"
+                                                placeholder="Enter your State"formControlName="state">
                                         </div>
                                         <div class="col-md-4">
                                             <label class="labels">Country</label>
-                                            <input type="text" class="form-control rounded" tabindex="8" placeholder="Country Name" value="">
+                                            <input type="text" class="form-control rounded" tabindex="8"
+                                                placeholder="Country Name" formControlName="country">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-3 mt-2">
+                                                <label for="logo" class="labels">Logo</label>
+                                                <input #fileInput type="file"  (change)="onFileChange($event)" class="form-control">
+                                                <!-- <small
+                                                *ngIf="registerForm.controls['logo'].dirty && registerForm.hasError('required','logo')">*Logo
+                                                is Required</small> -->
+                                            </div>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="labels">Additional Information</label>
-                                            <input type="text" class="form-control rounded additional-information" tabindex="9" placeholder="">
+                                            <!-- <textarea type="text" class="form-control rounded additional-information"
+                                                tabindex="9" > -->
+                                                <textarea name="prInfo" id="" cols="30" rows="3" formControlName="prInfo" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                               
+
                                 <div class="mt-2 text-center"><button class="btn btn-primary profile-button"
-                                        type="button" tabindex="10">Save
+                                        type="button" tabindex="10" (click)="onSubmit()">Save
                                         Profile</button>
                                 </div>
-                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

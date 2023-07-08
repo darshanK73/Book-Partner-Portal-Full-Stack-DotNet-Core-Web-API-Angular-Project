@@ -57,7 +57,7 @@ body {
 .form-control:focus {
   box-shadow: none;
   border-color: #6477e2;
-  background-color: #edf0f5;
+  /* background-color: #edf0f5; */
 }
 
 .profile-button {
@@ -124,3 +124,26 @@ body {
   cursor: pointer;
   border: solid 1px #8282ff;
 }
+
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #3351e1;
+  padding: 5px 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+  font-size: 16px;
+}
+
+input[type=file]::file-selector-button:hover{
+  color: #3351e1;
+}
+
+
+textarea{
+  resize: none;
+}
+

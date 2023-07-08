@@ -379,7 +379,7 @@ namespace Book_Portal_API.Controllers
             }
 
            
-            return Ok(new MessageResponse(){ Message = "Recoard Created Successfully" });
+            return Ok(new MessageResponse(){ Message = "Recoard Updated Successfully" });
         }
 
         // DELETE: api/titles/{id}
