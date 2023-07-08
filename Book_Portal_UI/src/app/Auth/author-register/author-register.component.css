@@ -4,6 +4,12 @@
 
 .row{
     height: 100%;
+    
+}
+::placeholder{
+    font-size: 12px;
+    color:gray;
+    opacity: 50%;
 }
 
 .form-control:focus{
