@@ -41,12 +41,21 @@
                         <div class="col-md-4 mt-2"><label class="labels">Number of Authors </label><input type="number"
                                 class="form-control rounded" placeholder="Type of Book" formControlName="auOrd">
                         </div>
+                        <div class="col-md-4 mt-2" ><label class="labels">Additional information </label><input type="text"
+                            class="form-control rounded" placeholder="">
+                    </div>
+                        <!-- <div class="">
+                            <div class="col-md-4 mt-2">
+                                <label class="labels">Additional Information</label>
+                                <input type="text" class="form-control rounded additional-information" placeholder=""
+                                    formControlName="notes">
+                            </div> -->
                         <!-- <div class="col-md-4">
                             <label class="labels">Author Order</label>
                             <input type="number" class="form-control rounded" placeholder="Author Ord"
                                 formControlName="auOrd">
                         </div> -->
-                        <div class="col-md-8 mt-2">
+                        <div class="col-md-12 mt-2">
                             <label class="labels" for="auIds">Authors ID</label>
                             <select id="auIds" class="form-control rounded" size="3" multiple formControlName="auIds">
                                 <option *ngFor="let author of authorIds" [value]="author.authorId">{{author.authorName +
@@ -55,18 +64,18 @@
                         </div>
 
                     </div>
-                    <div class="row mt-2">
+                    <!-- <div class="row mt-2">
                         <div class="col-md-12">
                             <label class="labels">Additional Information</label>
                             <textarea class="form-control rounded additional-information" placeholder=""
                                 formControlName="notes"></textarea>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="text-center">
                     <button class="btn btn-primary profile-button" type="button" (click)="onSubmit()">Request</button>
                 </div>
-            </div>
+            
 
         </form>
     </div>

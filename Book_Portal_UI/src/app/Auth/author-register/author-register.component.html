@@ -15,21 +15,21 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" name="firstName" formControlName="firstName" id="firstName">
+                                    <input type="text" placeholder="Enter first name (eg:Dipak)" name="firstName" tabindex="1" formControlName="firstName" id="firstName">
                                     <small
                                     *ngIf="registerForm.controls['firstName'].dirty && registerForm.hasError('required','firstName')">*Firstname
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="username">User Name</label>
-                                    <input type="text" name="username" formControlName="username" id="username">
+                                    <input type="text"  placeholder="Enter username (eg:Dizope)" tabindex="4" name="username" formControlName="username" id="username">
                                     <small
                                     *ngIf="registerForm.controls['username'].dirty && registerForm.hasError('required','username')">*Username
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="city">City</label>
-                                    <input type="text" name="city" formControlName="city" id="city">
+                                    <input type="text" name="city" placeholder="Enter city (eg:Nashik)" tabindex="7" formControlName="city" id="city">
                                     <small
                                     *ngIf="registerForm.controls['city'].dirty && registerForm.hasError('required','city')">*Please select your City
                                     </small>
@@ -38,21 +38,21 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" name="lastName" formControlName="lastName" id="lastName">
+                                    <input type="text" name="lastName" placeholder="Enter first name (eg:Zope)"  tabindex="2" formControlName="lastName" id="lastName">
                                     <small
                                     *ngIf="registerForm.controls['lastName'].dirty && registerForm.hasError('required','lastName')">*Lastname
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" formControlName="password" id="password">
+                                    <input type="password" name="password" placeholder="Enter your password (eg:Abc@123)" tabindex="5" formControlName="password" id="password">
                                     <small
                                     *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required','password')">*Password
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="state">State</label>
-                                    <input type="text" name="state"  formControlName="state" id="state">
+                                    <input type="text" name="state" placeholder="Enter state (eg:Maharashtra)" tabindex="8" formControlName="state" id="state">
                                     <small
                                     *ngIf="registerForm.controls['state'].dirty && registerForm.hasError('required','state')">*State
                                     is Required</small>
@@ -61,21 +61,21 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="country">Email ID</label>
-                                    <input type="email" name="email" formControlName="email" id="email">
+                                    <input type="email" name="email"  placeholder="Enter email-id (eg:ab@gmail.com)"tabindex="3" formControlName="email" id="email">
                                     <small
                                     *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required','email')">*Email ID
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="password1">Confirm Password</label>
-                                    <input type="password" name="password1" formControlName="password1" id="password1">
+                                    <input type="password" name="password1" placeholder="Confirm your password" tabindex="6" formControlName="password1" id="password1">
                                     <small
                                     *ngIf="registerForm.controls['password1'].dirty && registerForm.hasError('required','password1')">*Please Confirm your Password
                                     </small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="zip">Zip</label>
-                                    <input type="text" name="zip"  formControlName="zip" id="zip">
+                                    <input type="text" name="zip" placeholder="Enter zip code (eg:422008)" tabindex="9" formControlName="zip" id="zip">
                                     <small
                                     *ngIf="registerForm.controls['zip'].dirty && registerForm.hasError('required','zip')">*Zip Code
                                     is Required</small>
@@ -86,7 +86,7 @@
                             <div class="col-8">
                                 <div class="mb-2">
                                     <label for="address">Address</label>
-                                    <input type="text" name="address" formControlName="address" id="address">
+                                    <input type="text" name="address" placeholder="Enter Your Address" tabindex="10" formControlName="address" id="address">
                                     <small
                                     *ngIf="registerForm.controls['address'].dirty && registerForm.hasError('required','address')">*Address
                                     is Required</small>
@@ -95,7 +95,7 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="phone">Phone</label>
-                                    <input type="text" name="phone" formControlName="phone" id="phone">
+                                    <input type="text" name="phone" placeholder="Enter your phone no" tabindex="11" formControlName="phone" id="phone">
                                     <small
                                     *ngIf="registerForm.controls['phone'].dirty && registerForm.hasError('required','phone')">*Phone Number
                                     is Required</small>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 mt-3" id="btnwrap">
-                                <button type="submit" (click)="onSubmit()">Submit</button>
+                                <button type="submit" (click)="onSubmit()"  tabindex="" >Submit</button>
                             </div>
                         </div>
                         <div class="text text-center sign-up-text mt-2">Already have account? <a routerLink="/login">Login now</a> </div>

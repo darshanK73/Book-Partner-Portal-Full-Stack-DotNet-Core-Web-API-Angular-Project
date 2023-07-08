@@ -15,21 +15,21 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" name="firstName" formControlName="firstName" id="firstName">
+                                    <input type="text" name="firstName" placeholder="Enter first name (eg:Dipak)" formControlName="firstName" id="firstName">
                                     <small
                                     *ngIf="registerForm.controls['firstName'].dirty && registerForm.hasError('required','firstName')">*Firstname 
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="username">User Name</label>
-                                    <input type="text" name="username" formControlName="username" id="username">
+                                    <input type="text" name="username" placeholder="Enter username name (eg:dmz07)" formControlName="username" id="username">
                                     <small
                                     *ngIf="registerForm.controls['username'].dirty && registerForm.hasError('required','username')">*Username
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="city">City</label>
-                                    <input type="text" name="city"  formControlName="city" id="city">
+                                    <input type="text" name="city" placeholder="Enter city (eg:Nashik)" formControlName="city" id="city">
                                     <small
                                     *ngIf="registerForm.controls['city'].dirty && registerForm.hasError('required','city')">*City
                                     is Required</small>
@@ -38,21 +38,21 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" name="lastName" formControlName="lastName" id="lastName">
+                                    <input type="text" name="lastName" placeholder="Enter last name (eg:zope)" formControlName="lastName" id="lastName">
                                     <small
                                     *ngIf="registerForm.controls['lastName'].dirty && registerForm.hasError('required','lastName')">*Lastname
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" formControlName="password" id="password">
+                                    <input type="password" name="password" placeholder="Enter your password (eg:Abc@123)" formControlName="password" id="password">
                                     <small
                                     *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required','password')">*Password
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="state">State</label>
-                                    <input type="text" name="state" formControlName="state" id="state">
+                                    <input type="text" name="state" placeholder="Enter state (eg:Maharashtra)"formControlName="state" id="state">
                                     <small
                                     *ngIf="registerForm.controls['state'].dirty && registerForm.hasError('required','state')">*State
                                     is Required</small>
@@ -61,14 +61,14 @@
                             <div class="col-4">
                                 <div class="mb-2">
                                     <label for="country">Email ID</label>
-                                    <input type="email" name="email" formControlName="email" id="email">
+                                    <input type="email" name="email" placeholder="Enter email-id (eg:ab@gmail.com)" formControlName="email" id="email">
                                     <small
                                     *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required','email')">*Email ID
                                     is Required</small>
                                 </div>
                                 <div class="mb-2">
                                     <label for="password1">Confirm Password</label>
-                                    <input type="password" name="password1" formControlName="password1" id="password1">
+                                    <input type="password" placeholder="Confirm your password" name="password1" formControlName="password1" id="password1">
                                     <small
                                     *ngIf="registerForm.controls['password1'].dirty && registerForm.hasError('required','password1')">*Please Confirm your Password
                                     </small>
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <label for="country">Country</label>
-                                    <input type="text" name="country" formControlName="country" id="country">
+                                    <input type="text" placeholder="Enter country(eg:india)" name="country" formControlName="country" id="country">
                                     <small
                                     *ngIf="registerForm.controls['country'].dirty && registerForm.hasError('required','country')">*Country
                                     is Required</small>

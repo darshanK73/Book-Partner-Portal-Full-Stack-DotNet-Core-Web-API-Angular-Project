@@ -53,20 +53,25 @@
         </a>
       </li>
     </div>
-    <li>
+    <li class="logout">
     <li (click)="logout()" class="log_out">
-      <a>
+      <a href="">
         <i class='bx bx-log-out'></i>
         <span class="links_name">Log out</span>
       </a>
     </li>
   </ul>
 </div>
+
+
+
 <section class="home-section">
   <nav>
-    <div class="curved-rectangle">
-      <span class="placeholder-text">Dashboard</span>
-    </div>
+
+
+
+    <section class="content-section"></section>
+
     <!-- <div class="profile-details">
        <img src="../../../assets/img/profile.png" alt="Image not found">
       <span class="admin_name">Admin</span>
@@ -83,9 +88,12 @@
         <!-- <i class='bx bx-menu sidebarBtn'></i> -->
         <!-- <span class="dashboard">Dashboard</span> -->
       </div>
-      <div class="search-box">
-        <!-- <input type="text" placeholder="Search..."> -->
-        <!-- <i class='bx bx-search'></i> -->
+      <div class="search-box" routerLink="/dashboard">
+        <div class="curved-rectangle">
+          <span class="placeholder-text">Dashboard </span>
+        </div>
+        <!-- <input type="text" placeholder="">
+        <i class='bx bx-search'></i> -->
       </div>
       <div class="profile-details">
         <img src="../../../assets/img/profile.png" alt="">
@@ -98,6 +106,10 @@
       </div>
     </nav>
   </section>
-
   <router-outlet></router-outlet>
 </section>
+<div class="curved-rectangle2" *ngIf="isDashboardRoute()">
+  <img src="/assets/img/book 2.png" alt="Image">
+
+  <video src="/assets/img/myvid.mp4" autoplay loop></video>
+</div>

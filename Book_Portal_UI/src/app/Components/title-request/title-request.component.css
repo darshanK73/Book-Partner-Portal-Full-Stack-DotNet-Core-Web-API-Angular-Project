@@ -1,12 +1,15 @@
 .wrapper{
-    position: absolute;
-    top: 80px;
-    /* left:240px; */
+    position: fixed;
+    top: 61px;
+    left:207px;
     /* width: calc(100%-240px);
     height: calc(100%-80px); */
-    width: 100%;
+    width: 1300px;
+    height:1000px;
     font-size: 16px;
     background-color:  rgb(223, 220, 232);
+    border-radius: 10px;
+    z-index: 200 !important;
 }
 
 .holder{
@@ -20,6 +23,8 @@ form{
     border-radius: 20px;
     padding: 30px;
     font-size: 16px;
+    width: 1030px;
+    height: 500px;
     /* height: calc(100vh - 120px); */
 }
 
@@ -28,7 +33,11 @@ form{
     /* height: 480px;
     width: 850px; */
 }
-
+h4{
+    margin-left: 370px;
+    margin-top: -12px;
+    margin-bottom: -3px;
+}
 .labels {
     font-size: 12px !important;
     color: grey;
@@ -46,8 +55,12 @@ form{
     border: none;
 }
 
-.form-control.additional-information {
+/* .form-control.additional-information {
     height: 60px;
+} */
+
+.info{
+    height: 80px;
 }
 
 .form-control::placeholder {

@@ -1,18 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .wrapper{
-    position: absolute;
-    top: 80px;
-    /* left:240px; 
-    width: calc(100%-240px);
-    height: calc(100%-80px); */
-    width: 100%;
-    font-size: 12px;
-    background-color:  rgb(223, 220, 232);
+  position: fixed;
+  top: 60px;
+  left:205px;
+  /* width: calc(100%-240px);
+  height: calc(100%-80px); */
+  width: 100%;
+  font-size: 12px;
+  background-color:  rgb(223, 220, 232);
+  border-radius: 10px;
+  height: 800px;
+  z-index: 200 !important;
 }
 
 .holder{
     padding: 20px;
     border-radius: 20px;
     overflow: hidden;
+}
+.ad{
+  height: 80px;
 }
 
 form{
@@ -32,10 +44,14 @@ body {
 .custom-column {
     background-color: #edf0f5;
     border-right: none;
-    /* height:480px; */
+    height:500px;
     padding-left: 0px;
-    /* margin-left: -4px; */
+    margin-left: -4px;
     border-radius: 20px 0px 0px 20px;
+   
+  }
+  h4{
+    margin-right: 70px;
   }
 
   span .font-weight-bold,
@@ -45,9 +61,12 @@ body {
 
 .custom-rounded {
   border-radius: 20px;
-  /* height: 480px;
-  width:900px; */
-  box-shadow: 3px 3px 30px 2px rgba(20, 20, 20, 0.4);
+  height: 500px;
+  width:1000px;
+  box-shadow: 3px 3px 30px 2px rgba(20, 20, 20, 0.1);
+  position: absolute;
+  left:40px;
+  top: 20px;
 }
 .labels {
     font-size: 12px !important;
@@ -57,24 +76,26 @@ body {
 .form-control:focus {
   box-shadow: none;
   border-color: #6477e2;
-  /* background-color: #edf0f5; */
+  background-color: #edf0f5;
 }
 
 .profile-button {
   background: #5066e1;
   box-shadow: none;
   border: none;
-  margin-bottom: -20px;
 }
 .form-control.additional-information {
-  height: 60px;
+  height: 80px !important;
 }
 .form-control::placeholder {
     font-size: 12px;
     color: gray;
     opacity: 60%;
   }
-
+  /* h4{
+    margin-left: 180px;
+    /* margin-top: -10px ; */
+  
   .form-control {
     border-radius: 10px !important;
     background-color: #edf0f5;
@@ -86,13 +107,15 @@ body {
     background: #5066e1;
     box-shadow: none;
     border: none;
-    margin-top: 15px; /* Adjust the margin as desired */
+    margin-top: 8px; /* Adjust the margin as desired */
     position: relative;
-    /* margin-left: -20px;  */
+    margin-left: 3px; 
     /* top: -35px; Adjust the position as desired */
     border-radius: 15px;
-    width: 150px;
+    width: 200px;
     font-size: 13px;
+    height: 40px;
+    padding: 5px;
   }
 .profile-button:hover {
   background: #6477e2;
@@ -124,26 +147,3 @@ body {
   cursor: pointer;
   border: solid 1px #8282ff;
 }
-
-input[type=file]::file-selector-button {
-  margin-right: 20px;
-  border: none;
-  background: #3351e1;
-  padding: 5px 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  transition: background .2s ease-in-out;
-  font-size: 16px;
-}
-
-input[type=file]::file-selector-button:hover{
-  color: #3351e1;
-}
-
-
-textarea{
-  resize: none;
-}
-

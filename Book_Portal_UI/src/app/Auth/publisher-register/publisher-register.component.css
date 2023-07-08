@@ -12,6 +12,11 @@
     box-shadow: none;
 }
 
+::placeholder{
+    font-size: 12px;
+    color: gray;
+    opacity: 50%;
+}
 
 .wrapper {
     min-height: 100vh;
