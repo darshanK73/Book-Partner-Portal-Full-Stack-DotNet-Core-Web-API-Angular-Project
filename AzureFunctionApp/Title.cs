@@ -1,11 +1,16 @@
-﻿using Book_Portal_API.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Book_Portal_API.Payloads
+namespace AzureFunctionApp
 {
-    public class TitlePublishRequest
+    public class Title
     {
-        public string title_id { get; set; }
+        public string title_id { get; set; } = null!;
         public string title { get; set; } = null!;
         public string type { get; set; } = null!;
         public string? pub_id { get; set; }

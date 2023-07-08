@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Authorization;
 using Book_Portal_API.Payloads;
 using Microsoft.AspNetCore.SignalR;
+using Book_Portal_API.Helpers;
 
 namespace Book_Portal_API.Controllers
 {
@@ -19,70 +20,80 @@ namespace Book_Portal_API.Controllers
     public class TitlesController : ControllerBase
     {
         private readonly PubsContext _context;
+        private readonly IConfiguration _configuration;
 
-        public TitlesController(PubsContext context)
+        public TitlesController(PubsContext context,IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // POST: api/titles
         [HttpPost]
-        public async Task<ActionResult<MessageResponse>> PostTitle(TitlePublishRequest titleRequest)
+        public async Task<ActionResult<MessageResponse>> PostTitle(TitleRequest titleRequest)
         {
             if(titleRequest == null)
             {
                 return BadRequest();
             }
-            
-            var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
 
-            if(pub == null)
-            {
-                return BadRequest(new { Message = "Publisher Do Not Exists" });
-            }
+            //var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
 
-            var titleauthors = new List<Titleauthor>();
+            //if (pub == null)
+            //{
+            //    return BadRequest(new { Message = "Publisher Do Not Exists" });
+            //}
 
             var bookId = CreateTitleId(titleRequest.Type);
 
-            foreach(var auid in titleRequest.AuIds)
-            {
-                var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
-                if(author == null)
-                {
-                    return BadRequest(new { Message = "Author with given id not found" });
-                }
-                titleauthors.Add(new Titleauthor()
-                {
-                    AuId = auid,
-                    TitleId = bookId,
-                    AuOrd = titleRequest.AuOrd,
-                    Royaltyper = titleRequest.Royaltyper,
-                });
+            //foreach (var auid in titleRequest.AuIds)
+            //{
+            //    var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
+            //    if (author == null)
+            //    {
+            //        return BadRequest(new { Message = "Author with given id not found" });
+            //    }
+            //    Titleauthor titleauthor = new Titleauthor()
+            //    {
+            //        AuId = auid,
+            //        TitleId = bookId,
+            //        AuOrd = titleRequest.AuOrd,
+            //        Royaltyper = titleRequest.Royaltyper
+            //    };
 
-            }
+            //    await this._context.AddAsync(titleauthor);
+            //    await this._context.SaveChangesAsync();    
 
-            Title title = new Title()
+            //}
+
+            TitlePublishRequest title = new TitlePublishRequest()
             {
-                TitleId = bookId,
-                Title1 = titleRequest.Title1,
-                Type = titleRequest.Type,
-                PubId = titleRequest.PubId,
-                Price = titleRequest.Price,
-                Advance = titleRequest.Advance,
-                Royalty = titleRequest.Royalty,
-                YtdSales = titleRequest.YtdSales,
-                Notes = titleRequest.Notes,
-                Pubdate = titleRequest.Pubdate,
-                Pub = pub,
-                Titleauthors = titleauthors,
-                Sales = new List<Sale>()
+                title_id = bookId,
+                title = titleRequest.Title1,
+                type = titleRequest.Type,
+                pub_id = titleRequest.PubId,
+                price = titleRequest.Price,
+                advance = titleRequest.Advance,
+                royalty = titleRequest.Royalty,
+                ytd_sales = titleRequest.YtdSales,
+                notes = titleRequest.Notes,
+                pubdate = titleRequest.Pubdate
             };
 
-            await _context.Titles.AddAsync(title);
-            await _context.SaveChangesAsync();
+            bool _isUploaded = await TitlePublishHelper.PublishTitleToStorageContainer(_configuration, title);
 
-            return Ok(new MessageResponse(){ Message = "Recoard Created Successfully" });
+            if (_isUploaded)
+            {
+                return Ok(new MessageResponse() { Message = "Title Publish Request Sent Successfully" });
+            }
+
+            return BadRequest(new MessageResponse() { Message = "Some Error Happened" });
+
+
+            //await _context.Titles.AddAsync(title);
+            //await _context.SaveChangesAsync();
+
+            //return Ok(new MessageResponse(){ Message = "Recoard Created Successfully" });
         }
 
         // GET: api/titles

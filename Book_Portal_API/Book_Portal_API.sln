@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Portal_API", "Book_Portal_API.csproj", "{F14A3EFF-EF6D-4D4C-B117-8A009C65F9D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Book_Portal_API", "Book_Portal_API.csproj", "{F14A3EFF-EF6D-4D4C-B117-8A009C65F9D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitlePublishFunction", "..\TitlePublishFunction\TitlePublishFunction.csproj", "{F698C168-7127-4B22-A67E-46564B86924A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F14A3EFF-EF6D-4D4C-B117-8A009C65F9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F14A3EFF-EF6D-4D4C-B117-8A009C65F9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F14A3EFF-EF6D-4D4C-B117-8A009C65F9D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F698C168-7127-4B22-A67E-46564B86924A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F698C168-7127-4B22-A67E-46564B86924A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F698C168-7127-4B22-A67E-46564B86924A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F698C168-7127-4B22-A67E-46564B86924A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
