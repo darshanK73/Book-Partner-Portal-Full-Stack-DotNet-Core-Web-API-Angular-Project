@@ -12,7 +12,7 @@
         public string? Notes { get; set; }
         public DateTime Pubdate { get; set; }
         public string[] AuIds { get; set; } = null!;
-        public byte? AuOrd { get; set; }
-        public int? Royaltyper { get; set; }
+        public byte AuOrd { get; set; }
+        public int Royaltyper { get; set; }
     }
 }

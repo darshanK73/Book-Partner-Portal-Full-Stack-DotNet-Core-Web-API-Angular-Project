@@ -96,6 +96,7 @@ namespace Book_Portal_API.Controllers
             };
 
             await _context.AddAsync(author);
+            //await _context.Authors.AddAsync(author);
             await _context.SaveChangesAsync();
 
             return Ok(new RegisterResponse() { Message = "User Registered Successfully"});

@@ -37,34 +37,35 @@ namespace Book_Portal_API.Controllers
                 return BadRequest();
             }
 
-            //var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
+            var pub = await _context.Publishers.FindAsync(titleRequest.PubId);
 
-            //if (pub == null)
-            //{
-            //    return BadRequest(new { Message = "Publisher Do Not Exists" });
-            //}
+            if (pub == null)
+            {
+                return BadRequest(new { Message = "Publisher Do Not Exists" });
+            }
 
             var bookId = CreateTitleId(titleRequest.Type);
 
-            //foreach (var auid in titleRequest.AuIds)
-            //{
-            //    var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
-            //    if (author == null)
-            //    {
-            //        return BadRequest(new { Message = "Author with given id not found" });
-            //    }
-            //    Titleauthor titleauthor = new Titleauthor()
-            //    {
-            //        AuId = auid,
-            //        TitleId = bookId,
-            //        AuOrd = titleRequest.AuOrd,
-            //        Royaltyper = titleRequest.Royaltyper
-            //    };
+            List<TitleauthorPublishRequest> titleauthors = new List<TitleauthorPublishRequest>();
 
-            //    await this._context.AddAsync(titleauthor);
-            //    await this._context.SaveChangesAsync();    
+            foreach (var auid in titleRequest.AuIds)
+            {
+                var author = await _context.Authors.Where(au => au.AuId == auid).FirstOrDefaultAsync();
+                if (author == null)
+                {
+                    return BadRequest(new { Message = "Author with given id not found" });
+                }
+                TitleauthorPublishRequest titleauthor = new TitleauthorPublishRequest()
+                {
+                    au_id = auid,
+                    title_id = bookId,
+                    au_ord = titleRequest.AuOrd,
+                    royaltyper = titleRequest.Royaltyper
+                };
 
-            //}
+               titleauthors.Add(titleauthor);
+
+            }
 
             TitlePublishRequest title = new TitlePublishRequest()
             {
@@ -77,7 +78,8 @@ namespace Book_Portal_API.Controllers
                 royalty = titleRequest.Royalty,
                 ytd_sales = titleRequest.YtdSales,
                 notes = titleRequest.Notes,
-                pubdate = titleRequest.Pubdate
+                pubdate = titleRequest.Pubdate,
+                titleauthors = titleauthors
             };
 
             bool _isUploaded = await TitlePublishHelper.PublishTitleToStorageContainer(_configuration, title);

@@ -1,11 +1,14 @@
-﻿using Book_Portal_API.Models;
-using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Book_Portal_API.Payloads
+namespace AzureFunctionApp
 {
-    public class TitlePublishRequest
+    public class Titleview
     {
-        public string title_id { get; set; }
+        public string title_id { get; set; } = null!;
         public string title { get; set; } = null!;
         public string type { get; set; } = null!;
         public string? pub_id { get; set; }
@@ -15,7 +18,6 @@ namespace Book_Portal_API.Payloads
         public int? ytd_sales { get; set; }
         public string? notes { get; set; }
         public DateTime pubdate { get; set; }
-
-        public List<TitleauthorPublishRequest> titleauthors { get; set; }
+        public List<Titleauthor> titleauthors { get; set; }
     }
 }

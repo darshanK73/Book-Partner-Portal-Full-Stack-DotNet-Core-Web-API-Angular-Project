@@ -1,24 +1,29 @@
 .wrapper {
-    position: fixed;
-    top: 61px;
-    left: 207px;
-    width: calc(100% - 205px);
-    height: 800px;
-    font-size: 12px;
-    border-radius: 10px;
-    background-color: rgb(223, 220, 232);
-    overflow: hidden;
-    z-index: 200 !important;
+  position: fixed;
+  top: 61px;
+  left:207px;
+  /* width: calc(100%-240px); */
+  /*height: calc(100%-80px); */
+  width: 100%;
+  font-size: 12px;
+  background-color:  rgb(223, 220, 232);
+  border-radius: 10px;
+  height: 800px;
+  z-index: 200 !important;
 
   }
   
   .holder {
-    padding: 20px;
+    position: fixed;
+    top: 83px;
+    left: 230px;
+    right: 20px;
+    bottom: 20px;
+    overflow-y: auto;
+    background-color: #fff;
     border-radius: 20px;
-    overflow-x:auto;
-    height: 100%;
-    border-radius: 20px;
-    box-shadow: 3px 3px 30px 2px rgba(20, 20, 20, 0.2);
+    padding: 10px;
+    font-size: 12px;
   }
   
   table {
@@ -29,7 +34,7 @@
   tbody {
     display: block;
     max-height: calc(100% - 20px); /* Adjust the max-height as needed */
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   
   thead,
